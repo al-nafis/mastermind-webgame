@@ -1,10 +1,90 @@
+let mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen;
+
+let soundStatus = true;
+
+const textColor = "#ccc";
+const textColorDisabled = "red";
+
 let game;
 
 window.onload = function() {
-    game = new Game(Difficulty.BEGINNER);
-//    for (let i=0; i<game.codeMaker.length; i++) {
-//        document.getElementById("cm" + (i+1)).style.backgroundColor = game.codeMaker[i];
-//    }
+    //screens
+    mainMenu = document.getElementById("main-menu");
+    newGameMenu = document.getElementById("new-game-menu");
+    optionsMenu = document.getElementById("options-menu");
+    creditsMenu = document.getElementById("credits-menu");
+    menuScreen = document.getElementById("menu-screen");
+    gameScreen = document.getElementById("game-screen");
+
+    //buttons
+    soundOnBtn = document.getElementById("sound-on-btn");
+    soundOffBtn = document.getElementById("sound-off-btn");
+    
+    newGameMenu.style.display = "none";
+    optionsMenu.style.display = "none";
+    creditsMenu.style.display = "none";
+    
+    gameScreen.style.display = "none";
+}
+
+function newGame() {
+    mainMenu.style.display = "none";
+    newGameMenu.style.display = "block";
+}
+
+function options() {
+    mainMenu.style.display = "none";
+    optionsMenu.style.display = "block";
+    if (soundStatus) {
+        soundOffBtn.style.color = textColor;
+        soundOffBtn.style.cursor = "pointer";
+        soundOnBtn.style.color = textColorDisabled;
+        soundOnBtn.style.cursor = "default";
+    } else {
+        soundOnBtn.style.color = textColor;
+        soundOnBtn.style.cursor = "pointer";
+        soundOffBtn.style.color = textColorDisabled;
+        soundOffBtn.style.cursor = "default";
+    }
+}
+
+function credits() {
+    mainMenu.style.display = "none";
+    creditsMenu.style.display = "block";
+}
+
+function back() {
+    newGameMenu.style.display = "none";
+    optionsMenu.style.display = "none";
+    creditsMenu.style.display = "none";
+    mainMenu.style.display = "block";
+}
+
+function soundOn() {
+    if (!soundStatus) {
+        soundOffBtn.style.color = textColor;
+        soundOffBtn.style.cursor = "pointer";
+        soundOnBtn.style.color = textColorDisabled;
+        soundOnBtn.style.cursor = "default";
+        soundStatus = true;
+    }
+}
+
+function soundOff() {
+    if (soundStatus) {
+        soundOnBtn.style.color = textColor;
+        soundOnBtn.style.cursor = "pointer";
+        soundOffBtn.style.color = textColorDisabled;
+        soundOffBtn.style.cursor = "default";
+        soundStatus = false;
+    }
+}
+
+function startGame(difficultyLevel) {
+    game = new Game(difficultyLevel);
+    back();
+    menuScreen.style.display = "none";
+    gameScreen.style.display = "block";
 }
 
 function check() {
