@@ -1,0 +1,67 @@
+.testing1 {
+  border: 1px solid pink;
+  background-color: blue; }
+
+.testing2 {
+  border: 1px solid lightblue;
+  background-color: red; }
+
+.testing3 {
+  border: 1px solid lightgreen;
+  background-color: yellow; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html, body {
+  background-color: black;
+  overflow: hidden; }
+
+main {
+  background-image: url("../images/main_menu.gif");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background--webkit-size: cover;
+  background--moz-size: cover;
+  background--o-size: cover;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 100vh; }
+  @media only screen and (min-width: 576px) {
+    main {
+      background--webkit-attachment: fixed;
+      background--moz-attachment: fixed;
+      background--o-attachment: fixed;
+      background-attachment: fixed; } }
+  @media (min-width: 420px) {
+    main {
+      border: 2px solid #ccc;
+      border-radius: 1%;
+      width: 420px; } }
+  @media (min-height: 750px) {
+    main {
+      border: 2px solid #ccc;
+      border-radius: 1%;
+      height: 750px; } }
+
+#main-menu-screen {
+  height: 33%;
+  text-align: center; }
+  #main-menu-screen img {
+    margin-bottom: 50px; }
+  #main-menu-screen div a {
+    text-decoration: none; }
+    #main-menu-screen div a p {
+      margin: 10px 0; }
+
+/*# sourceMappingURL=main.css.map */
