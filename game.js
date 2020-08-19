@@ -30,14 +30,6 @@ class Game {
         }
     }
     
-    incrementTurn() {
-        this.turn++;
-    }
-    
-    setCurrentCodeBreakerPattern(codePattern) {
-        this.currentCodeBreakerPattern = codePattern;
-    }
-    
     getFeedback() {
         const parallelMatch = "parallelMatch";
         const lineMatch = "lineMatch"

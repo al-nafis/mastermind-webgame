@@ -1,38 +1,32 @@
-var game = new Game(Difficulty.BEGINNER);
+let game;
 
 window.onload = function() {
-    document.getElementById("cm1").style.backgroundColor = game.codeMaker[0];
-    document.getElementById("cm2").style.backgroundColor = game.codeMaker[1];
-    document.getElementById("cm3").style.backgroundColor = game.codeMaker[2];
-    document.getElementById("cm4").style.backgroundColor = game.codeMaker[3];
-}
-
-function getR() {
-    return Math.floor(Math.random() * Colors.length);
+    game = new Game(Difficulty.ENGINEER);
+    for (let i=0; i<game.codeMaker.length; i++) {
+        document.getElementById("cm" + (i+1)).style.backgroundColor = game.codeMaker[i];
+    }
 }
 
 function check() {
-    codeBreaker = [
-        Colors[getR()], 
-        Colors[getR()], 
-        Colors[getR()], 
-        Colors[getR()]
-    ];
-    game.setCurrentCodeBreakerPattern(codeBreaker);
+    const codeBreaker = [];
+    for (let i=0; i<game.codeMaker.length; i++) {
+        codeBreaker.push(Colors[Math.floor(Math.random() * Colors.length)]);
+    }
+    game.currentCodeBreakerPattern = codeBreaker;
     
-    var table = document.getElementById("game");
-    var row = document.createElement("TR");
+    const table = document.getElementById("game");
+    const row = document.createElement("TR");
     
     //turn number column
-    var turn = document.createElement("TD");
+    const turn = document.createElement("TD");
     turn.classList.add("turns");
     turn.innerHTML = game.turn;
     row.appendChild(turn);
     
     //breaker's code column
-    var breakingCodesColumn = document.createElement("TD");
-    for (var i=0; i<codeBreaker.length; i++) {
-        var code = document.createElement("DIV");
+    const breakingCodesColumn = document.createElement("TD");
+    for (let i=0; i<codeBreaker.length; i++) {
+        const code = document.createElement("DIV");
         code.classList.add("box");
         code.style.backgroundColor = codeBreaker[i];
         breakingCodesColumn.appendChild(code);
@@ -40,7 +34,7 @@ function check() {
     
     row.appendChild(breakingCodesColumn);
             
-    var codeMaker = [
+    const codeMaker = [
         game.codeMaker[0],
         game.codeMaker[1],
         game.codeMaker[2],
@@ -48,12 +42,12 @@ function check() {
     ];
     
     const feedback = game.getFeedback();
-    game.incrementTurn();
+    game.turn++;
     
     //feedback column
-    var fb = document.createElement("TD");
-    for(var i=0; i<feedback.length; i++) {
-        var peg = document.createElement("DIV");
+    const fb = document.createElement("TD");
+    for(let i=0; i<feedback.length; i++) {
+        const peg = document.createElement("DIV");
         peg.classList.add("peg");
         peg.style.backgroundColor = feedback[i];
         fb.appendChild(peg);
