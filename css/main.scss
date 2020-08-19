@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+$textColor: #ccc;
+
+@mixin prefix($property, $value){
+	#{'-webkit-' + $property} : $value;
+	#{'-moz-' + $property} : $value;
+	#{'-ms-' + $property} : $value;
+	#{'-o-' + $property} : $value;
+	$property : $value;
+}
+
+@mixin steady-background($url, $vertical_position: center, $horizontal_position: center, $attachment: fixed, $size: cover){
+	background:{
+		image:url($url);
+		repeat: no-repeat;
+		position: $vertical_position $horizontal_position;
+				
+		-webkit-size: $size;
+		-moz-size: $size;
+		-o-size: $size;
+		size: $size;
+	};
+	@media only screen and (min-width: 576px){
+        background:{
+            -webkit-attachment: $attachment;
+            -moz-attachment: $attachment;
+            -o-attachment: $attachment;
+            attachment: $attachment;
+        };
+    }
+}
+
+.testing1{border:1px solid pink;background-color:blue;}
+.testing2{border:1px solid lightblue;background-color:red;}
+.testing3{border:1px solid lightgreen;background-color:yellow;}
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+* {
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+}
+
+html, body {
+    background-color: black;
+    overflow: hidden;
+    font-family: 'Special Elite', cursive;
+    font-size: 1.3em;
+    color: $textColor;
+}
+
+main {
+    @include steady-background("../images/main_menu.gif");
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    @media (min-width: 420px) {
+        border: 2px solid #ccc;
+        border-radius: 1%;
+        width: 420px;
+    };
+    @media (min-height: 750px) {
+        border: 2px solid #ccc;
+        border-radius: 1%;
+        height: 750px;
+    };
+}
+
+#menu-screen {
+    position: absolute;
+    height: 55%;
+    text-align: center;
+    img {
+        margin-bottom: 50px;
+    }
+    div {
+        a {
+            text-decoration: none;
+            color: $textColor;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        p {
+          margin: 30px 0;  
+        }
+    }
+}
+
+#game-screen {
+    width: 100%;
+    height: 100%;
+}
