@@ -15,37 +15,45 @@ class Game {
         this.codeMaker = getCodeMakerPattern();
         this.currentCodeBreakerPattern = [];
         
-        //private functions
+        //private function
         function getCodeMakerPattern() {
             const pattern = [];
             let totalCodePegs = 4;
-            if (difficultyLevel == Difficulty.ENGINEER) {
-                totalCodePegs = 6;
+            
+            if (difficultyLevel == Difficulty.BEGINNER) {
+                const cMaker = Colors.slice();
+                for (let i=0; i<totalCodePegs; i++) {
+                    let index = Math.floor(Math.random() * cMaker.length);
+                    pattern.push(cMaker[index]);
+                    cMaker.splice(index,1);
+                }
+            } else {
+                if (difficultyLevel == Difficulty.ENGINEER) {
+                    totalCodePegs = 6;
+                }
+                for (let i=0; i<totalCodePegs; i++) {
+                    let index = Math.floor(Math.random() * Colors.length);
+                    pattern.push(Colors[index]);
+                }
             }
-            for (let i=0; i<totalCodePegs; i++) {
-                let index = Math.floor(Math.random() * Colors.length);
-                pattern.push(Colors[index]);
-            }
+
             return pattern;
         }
     }
     
     getFeedback() {
         const parallelMatch = "parallelMatch";
-        const lineMatch = "lineMatch"
+        const lineMatch = "lineMatch";
+        const parallelMatchColor = "black";
+        const lineMatchColor = "white";
         const feedback = [];
-        const cMaker = [];
-        const cBreaker = [];
-        
-        for (let i=0; i<this.codeMaker.length; i++) {
-            cMaker.push(this.codeMaker[i]);
-            cBreaker.push(this.currentCodeBreakerPattern[i]);
-        };
+        const cMaker = this.codeMaker.slice();
+        const cBreaker = this.currentCodeBreakerPattern.slice();
         
         //checking for exact match
         for (let i=0; i<cMaker.length; i++) {
             if (cMaker[i] == cBreaker[i]) {
-                feedback.push("black");
+                feedback.push(parallelMatchColor);
                 cMaker[i] = parallelMatch;
                 cBreaker[i] = parallelMatch;
             }
@@ -57,7 +65,7 @@ class Game {
                 for (let j=0; j<cBreaker.length; j++) {
                     if (cBreaker[j] != parallelMatch && cBreaker[j] != lineMatch) {
                         if (cMaker[i] == cBreaker[j]) {
-                            feedback.push("white");
+                            feedback.push(lineMatchColor);
                             cMaker[i] = lineMatch;
                             cBreaker[j] = lineMatch;
                         }

@@ -1,7 +1,7 @@
 let game;
 
 window.onload = function() {
-    game = new Game(Difficulty.ENGINEER);
+    game = new Game(Difficulty.BEGINNER);
     for (let i=0; i<game.codeMaker.length; i++) {
         document.getElementById("cm" + (i+1)).style.backgroundColor = game.codeMaker[i];
     }
