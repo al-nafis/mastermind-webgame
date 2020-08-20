@@ -18,27 +18,30 @@
 	 <script src="js/main.min.js"></script> 
 </head>
 <body>
-    <main>
+    <main id="main-screen">
         <div id="menu-screen">
             <img src="images/logo.png" width="90%"/>
             <div>    
+                <div id="welcome-menu" class="position-absolute w-100">
+                    <a onclick="play()"><p>Play</p></a>
+                </div>
                 <div id="main-menu" class="position-absolute w-100">
-                    <a id="new-game-btn" onclick="newGame()"><p>New Game</p></a>
-                    <a id="options-btn" onclick="options()"><p>Options</p></a>
-                    <a id="credits-btn" onclick="credits()"><p>Credits</p></a>
+                    <a onclick="newGame()"><p>New Game</p></a>
+                    <a onclick="options()"><p>Options</p></a>
+                    <a onclick="credits()"><p>Credits</p></a>
                 </div>
                 <div id="new-game-menu" class="position-absolute w-100">
                     <p>Choose Your Difficulty</p>
-                    <a id="beginner-btn" onclick="startGame(Difficulty.BEGINNER)"><p>Beginner</p></a>
-                    <a id="developer-btn" onclick="startGame(Difficulty.DEVELOPER)"><p>Developer</p></a>
-                    <a id="engineer-btn" onclick="startGame(Difficulty.ENGINEER)"><p>Engineer</p></a>
+                    <a onclick="startGame(Difficulty.BEGINNER)"><p>Beginner</p></a>
+                    <a onclick="startGame(Difficulty.DEVELOPER)"><p>Developer</p></a>
+                    <a onclick="startGame(Difficulty.ENGINEER)"><p>Engineer</p></a>
                     <a class="back-btn" onclick="back()"><p>Back</p></a>
                 </div>
                 <div id="options-menu" class="position-absolute w-100">
                     <p>Sound</p>
                     <a id="sound-on-btn" onclick="soundOn()"><p>On</p></a>
                     <a id="sound-off-btn" onclick="soundOff()"><p>Off</p></a>
-                    <a id="back-btn" onclick="back()"><p>Back</p></a>
+                    <a onclick="back()"><p>Back</p></a>
                 </div>
                 <div id="credits-menu" class="position-absolute w-100">
                     <p>Credits</p>
@@ -46,9 +49,7 @@
                 </div>
             </div>
         </div>
-        <div id="game-screen" class="testing1">
-            
-        </div>
+        <div id="game-screen"></div>
     </main>
 </body>
 </html>

@@ -1,14 +1,14 @@
-let mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen;
+let welcomeMenu, mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, game;
 
-let soundStatus = true;
+let musicStatus = true;
+const backgroundMusic = new Audio("sounds/Dreaming.ogg");
 
 const textColor = "#ccc";
 const textColorDisabled = "red";
 
-let game;
-
 window.onload = function() {
     //screens
+    welcomeMenu = document.getElementById("welcome-menu");
     mainMenu = document.getElementById("main-menu");
     newGameMenu = document.getElementById("new-game-menu");
     optionsMenu = document.getElementById("options-menu");
@@ -20,11 +20,22 @@ window.onload = function() {
     soundOnBtn = document.getElementById("sound-on-btn");
     soundOffBtn = document.getElementById("sound-off-btn");
     
+    mainMenu.style.display = "none";
     newGameMenu.style.display = "none";
     optionsMenu.style.display = "none";
     creditsMenu.style.display = "none";
     
     gameScreen.style.display = "none";
+    document.getElementById("main-screen").style.display = "flex";
+    
+    backgroundMusic.preload = "auto";
+}
+
+function play() {
+    welcomeMenu.style.display = "none";
+    mainMenu.style.display = "block";
+    backgroundMusic.loop = true;
+    backgroundMusic.play();
 }
 
 function newGame() {
@@ -35,7 +46,7 @@ function newGame() {
 function options() {
     mainMenu.style.display = "none";
     optionsMenu.style.display = "block";
-    if (soundStatus) {
+    if (musicStatus) {
         soundOffBtn.style.color = textColor;
         soundOffBtn.style.cursor = "pointer";
         soundOnBtn.style.color = textColorDisabled;
@@ -61,22 +72,24 @@ function back() {
 }
 
 function soundOn() {
-    if (!soundStatus) {
+    if (!musicStatus) {
         soundOffBtn.style.color = textColor;
         soundOffBtn.style.cursor = "pointer";
         soundOnBtn.style.color = textColorDisabled;
         soundOnBtn.style.cursor = "default";
-        soundStatus = true;
+        musicStatus = true;
+        backgroundMusic.play();
     }
 }
 
 function soundOff() {
-    if (soundStatus) {
+    if (musicStatus) {
         soundOnBtn.style.color = textColor;
         soundOnBtn.style.cursor = "pointer";
         soundOffBtn.style.color = textColorDisabled;
         soundOffBtn.style.cursor = "default";
-        soundStatus = false;
+        musicStatus = false;
+        backgroundMusic.load();
     }
 }
 
@@ -85,6 +98,11 @@ function startGame(difficultyLevel) {
     back();
     menuScreen.style.display = "none";
     gameScreen.style.display = "block";
+    setupGameScreen();
+}
+
+function setupGameScreen() {
+    
 }
 
 function check() {

@@ -66,17 +66,17 @@ html, body {
 }
 
 main {
-    @include steady-background("../images/main_menu.gif");
+    @include steady-background("../images/main_menu.gif", $attachment: "initial");
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    display: flex;
+    display: none;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     @media (min-width: 420px) {
         border: 2px solid #ccc;
         border-radius: 1%;
