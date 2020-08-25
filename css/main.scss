@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
 $textColor: #ccc;
+$codeHolderBackgroundColor: #ddd;
+$border-radius: 3px;
+$border-radius-round: 50%;
 
 @mixin prefix($property, $value){
 	#{'-webkit-' + $property} : $value;
@@ -141,13 +144,47 @@ main {
 }
 
 #code-maker-pallet {
-    background: #fff;
-    height: 13vw;
+    position: relative;
+    margin: 5px;
+    border-radius: $border-radius;
+    background: #cccccc20;
+    height: 16vw;
+    display: flex;
+    justify-content: center;
+    #color-maker-pallet-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        height: 100%;
+        width: 100%;
+        background: red; //update color
+        display: none; //testing
+    }
+    .color-pegs-4 {
+        height: 13vw;
+        width: 13vw;
+        margin: 1.5vw 5px;
+        border-radius: $border-radius-round;
+    }
+    .color-pegs-6 {
+        
+    }
     @media (min-width: 420px) and (min-height: 750px) {
         height: 60px;
+        .color-pegs-4 {
+            height: 50px;
+            width: 50px;
+            margin: 5px;
+        }
     }
     @media (min-width: 420px) {
         height: 60px;
+        .color-pegs-4 {
+            height: 50px;
+            width: 50px;
+            margin: 5px;
+        }
     }
 }
 
@@ -196,15 +233,15 @@ main {
             height: 13vw;
             width: 13vw;
             margin: 5px;
-            background: #ddd;
-            border-radius: 50%;
+            background: $codeHolderBackgroundColor;
+            border-radius: $border-radius-round;
             display: inline-block;
             padding-top: 1px;
             .code-peg {
                 margin: auto;
                 height: 12.5vw;
                 width: 12.5vw;
-                border-radius: 50%;
+                border-radius: $border-radius-round;
             }
 
             #color-red {
@@ -262,7 +299,7 @@ main {
         padding: 15px 0 5px 0;
         margin: 5px 0;
         border-color: $textColor;
-        border-radius: 3%;
+        border-radius: $border-radius;
         background: #00000000;
         outline: none; 
     }

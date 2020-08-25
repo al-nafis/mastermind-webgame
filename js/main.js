@@ -1,6 +1,7 @@
 let welcomeMenu, mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, game;
 
 let musicStatus = true;
+//let isGameOver = false;
 const backgroundMusic = new Audio("sounds/Dreaming.ogg");
 
 const textColor = "#ccc";
@@ -114,10 +115,29 @@ function startGame(difficultyLevel) {
 const guesses = [];
 
 function setupGameScreen() {
+    console.log(game.codeMaker);
+    const pallet = document.getElementById("code-maker-pallet");
+    for (let i=0; i<game.codeMaker.length; i++) {
+        const color = document.createElement("DIV");
+        color.classList.add("color-pegs-4");
+        color.style.background = game.codeMaker[i];
+        pallet.appendChild(color);
+    }
+    
+    setupGuessRow();
+}
+
+function decode() {
+    game.turn++;
+    setupGuessRow();
+    guesses.scrollTop = 0;
+}
+
+function setupGuessRow() {
     const row = document.createElement("DIV");
     row.classList.add("row");
     row.textContent = game.turn;
-    document.getElementById("guesses").appendChild(row);
+    document.getElementById("guesses").prepend(row);
 }
 
 function toggleSound() {
@@ -131,16 +151,6 @@ function toggleSound() {
         backgroundMusic.play();
         soundImg.src = "images/unmute.png";
     }
-}
-
-function decode() {
-    const guesses = document.getElementById("guesses");
-    const row = document.createElement("DIV");
-    row.classList.add("row");
-    game.turn++;
-    row.textContent = game.turn;
-    guesses.prepend(row);
-    guesses.scrollTop = 0;
 }
 
 function check() {
