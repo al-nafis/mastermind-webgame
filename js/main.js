@@ -1,4 +1,4 @@
-let welcomeMenu, mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, game;
+let welcomeMenu, mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, game, codeMakerPallet, soundImg, guesses;
 
 let musicStatus = true;
 //let isGameOver = false;
@@ -21,6 +21,11 @@ window.onload = function() {
     soundOnBtn = document.getElementById("sound-on-btn");
     soundOffBtn = document.getElementById("sound-off-btn");
     
+    //game screen items
+    codeMakerPallet = document.getElementById("code-maker-pallet");
+    soundImg = document.getElementById("game-sound-btn");
+    guesses = document.getElementById("guesses");
+    
     mainMenu.style.display = "none";
     newGameMenu.style.display = "none";
     optionsMenu.style.display = "none";
@@ -30,16 +35,6 @@ window.onload = function() {
     document.getElementById("main-screen").style.display = "flex";
     
     backgroundMusic.preload = "auto";
-    
-    //TESTING
-    menuScreen.style.display = "none";
-    gameScreen.style.display = "block";
-    game = new Game(Difficulty.BEGINNER);
-    setupGameScreen();
-    backgroundMusic.loop = true;
-    backgroundMusic.play();
-    
-    //TESTING
 }
 
 function play() {
@@ -112,18 +107,14 @@ function startGame(difficultyLevel) {
     setupGameScreen();
 }
 
-const guesses = [];
-
 function setupGameScreen() {
     console.log(game.codeMaker);
-    const pallet = document.getElementById("code-maker-pallet");
     for (let i=0; i<game.codeMaker.length; i++) {
         const color = document.createElement("DIV");
         color.classList.add("color-pegs-4");
         color.style.background = game.codeMaker[i];
-        pallet.appendChild(color);
+        codeMakerPallet.appendChild(color);
     }
-    
     setupGuessRow();
 }
 
@@ -137,11 +128,13 @@ function setupGuessRow() {
     const row = document.createElement("DIV");
     row.classList.add("row");
     row.textContent = game.turn;
-    document.getElementById("guesses").prepend(row);
+    guesses.prepend(row);
+    if (!musicStatus) {
+        soundImg.src = "images/mute.png";
+    }
 }
 
 function toggleSound() {
-    const soundImg = document.getElementById("game-sound-btn");
     if (musicStatus) {
         musicStatus = false;
         backgroundMusic.load();
