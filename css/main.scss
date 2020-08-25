@@ -55,6 +55,7 @@ $textColor: #ccc;
 	box-sizing: border-box;
 	margin:0;
 	padding:0;
+    overflow: hidden;
 }
 
 html, body {
@@ -78,13 +79,13 @@ main {
     width: 100vw;
     height: 100%;
     @media (min-width: 420px) {
-        border: 2px solid #ccc;
-        border-radius: 1%;
+        border: 2px solid #525252;
+        border-radius: 2%;
         width: 420px;
     };
     @media (min-height: 750px) {
-        border: 2px solid #ccc;
-        border-radius: 1%;
+        border: 2px solid #525252;
+        border-radius: 2%;
         height: 750px;
     };
 }
@@ -115,3 +116,155 @@ main {
     height: 100%;
     background: #00000050;
 }
+
+#toolbar {
+    height: 50px;
+    padding: 10px;
+    #rules-btn {
+        height: 35px;
+        width: 35px;
+        float: left;
+    }
+    
+    #quit-btn {
+        height: 35px;
+        width: 35px;
+        float: right;
+    }
+    
+    #game-sound-btn {
+        height: 35px;
+        width: 35px;
+        float: right;
+        margin-right: 15px;
+    }
+}
+
+#code-maker-pallet {
+    background: #fff;
+    height: 13vw;
+    @media (min-width: 420px) and (min-height: 750px) {
+        height: 60px;
+    }
+    @media (min-width: 420px) {
+        height: 60px;
+    }
+}
+
+.bottom-fixed {
+    width: 100%;
+    position: absolute;
+    padding: 0 5px;
+    bottom: 0;
+    
+    #guesses {
+        overflow-y: scroll;
+        max-height: 55vh;
+        background: white;
+        .row {
+            height:13vw;
+            background: blue;
+            margin: 3px;
+        }
+        
+        @media (max-height: 600px) {
+            max-height: 50vh;
+            .row {
+                height: 60px;
+            }
+        }
+        
+        @media (min-width: 420px) and (min-height: 601px) {
+            max-height: 500px;
+            .row {
+                height: 60px;
+            }
+        }
+        
+        @media (min-width: 420px) {
+            .row {
+                height: 60px;
+            }
+        }
+    }
+    
+    #color-pallet {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+        .code-peg-holder {
+            height: 13vw;
+            width: 13vw;
+            margin: 5px;
+            background: #ddd;
+            border-radius: 50%;
+            display: inline-block;
+            padding-top: 1px;
+            .code-peg {
+                margin: auto;
+                height: 12.5vw;
+                width: 12.5vw;
+                border-radius: 50%;
+            }
+
+            #color-red {
+                background: red;
+            }
+
+            #color-blue {
+                background: blue;
+            }
+
+            #color-green {
+                background: green;
+            }
+
+            #color-yellow {
+                background: yellow;
+            }
+
+            #color-white {
+                background: white;
+            }
+
+            #color-black {
+                background: black;
+            }
+            
+            @media (min-width: 420px) and (min-height: 750px) {
+                height: 52px;
+                width: 52x;
+                padding-top: 2px;
+                .code-peg {
+                    height: 48px;
+                    width: 48px;
+                }
+            }
+            
+            @media (min-width: 420px) {
+                height: 52px;
+                width: 52px;
+                padding-top: 2px;
+                .code-peg {
+                    height: 48px;
+                    width: 48px;
+                }
+            }
+        }
+    }
+
+    #decode-btn {
+        font-family: 'Special Elite', cursive;
+        display: block;
+        font-size: 1em;
+        color: $textColor;
+        width: 100%;
+        padding: 15px 0 5px 0;
+        margin: 5px 0;
+        border-color: $textColor;
+        border-radius: 3%;
+        background: #00000000;
+        outline: none; 
+    }
+}
+

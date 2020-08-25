@@ -49,7 +49,26 @@
                 </div>
             </div>
         </div>
-        <div id="game-screen"></div>
+        <div id="game-screen">
+            <div id="toolbar">
+                <img id="rules-btn" src="images/idea.png">
+                <img id="quit-btn" src="images/exit.png">
+                <img id="game-sound-btn" src="images/unmute.png" onclick="toggleSound()">
+            </div>
+            <div id="code-maker-pallet"></div>
+            <div class="bottom-fixed">
+                <div id="guesses"></div>
+                <div id="color-pallet">
+                    <div class="code-peg-holder"><div class="code-peg" id="color-red"></div></div>
+                    <div class="code-peg-holder"><div class="code-peg" id="color-blue"></div></div>
+                    <div class="code-peg-holder"><div class="code-peg" id="color-green"></div></div>
+                    <div class="code-peg-holder"><div class="code-peg" id="color-yellow"></div></div>
+                    <div class="code-peg-holder"><div class="code-peg" id="color-white"></div></div>
+                    <div class="code-peg-holder"><div class="code-peg" id="color-black"></div></div>
+                </div>
+                <button id="decode-btn" onclick="decode()">Decode</button>
+            </div>
+        </div>
     </main>
 </body>
 </html>

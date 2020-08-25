@@ -29,6 +29,16 @@ window.onload = function() {
     document.getElementById("main-screen").style.display = "flex";
     
     backgroundMusic.preload = "auto";
+    
+    //TESTING
+    menuScreen.style.display = "none";
+    gameScreen.style.display = "block";
+    game = new Game(Difficulty.BEGINNER);
+    setupGameScreen();
+    backgroundMusic.loop = true;
+    backgroundMusic.play();
+    
+    //TESTING
 }
 
 function play() {
@@ -101,8 +111,36 @@ function startGame(difficultyLevel) {
     setupGameScreen();
 }
 
+const guesses = [];
+
 function setupGameScreen() {
-    
+    const row = document.createElement("DIV");
+    row.classList.add("row");
+    row.textContent = game.turn;
+    document.getElementById("guesses").appendChild(row);
+}
+
+function toggleSound() {
+    const soundImg = document.getElementById("game-sound-btn");
+    if (musicStatus) {
+        musicStatus = false;
+        backgroundMusic.load();
+        soundImg.src = "images/mute.png";
+    } else {
+        musicStatus = true;
+        backgroundMusic.play();
+        soundImg.src = "images/unmute.png";
+    }
+}
+
+function decode() {
+    const guesses = document.getElementById("guesses");
+    const row = document.createElement("DIV");
+    row.classList.add("row");
+    game.turn++;
+    row.textContent = game.turn;
+    guesses.prepend(row);
+    guesses.scrollTop = 0;
 }
 
 function check() {
