@@ -1,14 +1,15 @@
-let mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen;
+let welcomeMenu, mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, game, codeMakerPallet, soundImg, guesses;
 
-let soundStatus = true;
+let musicStatus = true;
+//let isGameOver = false;
+const backgroundMusic = new Audio("sounds/Dreaming.ogg");
 
 const textColor = "#ccc";
 const textColorDisabled = "red";
 
-let game;
-
 window.onload = function() {
     //screens
+    welcomeMenu = document.getElementById("welcome-menu");
     mainMenu = document.getElementById("main-menu");
     newGameMenu = document.getElementById("new-game-menu");
     optionsMenu = document.getElementById("options-menu");
@@ -20,11 +21,27 @@ window.onload = function() {
     soundOnBtn = document.getElementById("sound-on-btn");
     soundOffBtn = document.getElementById("sound-off-btn");
     
+    //game screen items
+    codeMakerPallet = document.getElementById("code-maker-pallet");
+    soundImg = document.getElementById("game-sound-btn");
+    guesses = document.getElementById("guesses");
+    
+    mainMenu.style.display = "none";
     newGameMenu.style.display = "none";
     optionsMenu.style.display = "none";
     creditsMenu.style.display = "none";
     
     gameScreen.style.display = "none";
+    document.getElementById("main-screen").style.display = "flex";
+    
+    backgroundMusic.preload = "auto";
+}
+
+function play() {
+    welcomeMenu.style.display = "none";
+    mainMenu.style.display = "block";
+    backgroundMusic.loop = true;
+    backgroundMusic.play();
 }
 
 function newGame() {
@@ -35,7 +52,7 @@ function newGame() {
 function options() {
     mainMenu.style.display = "none";
     optionsMenu.style.display = "block";
-    if (soundStatus) {
+    if (musicStatus) {
         soundOffBtn.style.color = textColor;
         soundOffBtn.style.cursor = "pointer";
         soundOnBtn.style.color = textColorDisabled;
@@ -61,22 +78,24 @@ function back() {
 }
 
 function soundOn() {
-    if (!soundStatus) {
+    if (!musicStatus) {
         soundOffBtn.style.color = textColor;
         soundOffBtn.style.cursor = "pointer";
         soundOnBtn.style.color = textColorDisabled;
         soundOnBtn.style.cursor = "default";
-        soundStatus = true;
+        musicStatus = true;
+        backgroundMusic.play();
     }
 }
 
 function soundOff() {
-    if (soundStatus) {
+    if (musicStatus) {
         soundOnBtn.style.color = textColor;
         soundOnBtn.style.cursor = "pointer";
         soundOffBtn.style.color = textColorDisabled;
         soundOffBtn.style.cursor = "default";
-        soundStatus = false;
+        musicStatus = false;
+        backgroundMusic.load();
     }
 }
 
@@ -85,6 +104,46 @@ function startGame(difficultyLevel) {
     back();
     menuScreen.style.display = "none";
     gameScreen.style.display = "block";
+    setupGameScreen();
+}
+
+function setupGameScreen() {
+    console.log(game.codeMaker);
+    for (let i=0; i<game.codeMaker.length; i++) {
+        const color = document.createElement("DIV");
+        color.classList.add("color-pegs-4");
+        color.style.background = game.codeMaker[i];
+        codeMakerPallet.appendChild(color);
+    }
+    setupGuessRow();
+}
+
+function decode() {
+    game.turn++;
+    setupGuessRow();
+    guesses.scrollTop = 0;
+}
+
+function setupGuessRow() {
+    const row = document.createElement("DIV");
+    row.classList.add("row");
+    row.textContent = game.turn;
+    guesses.prepend(row);
+    if (!musicStatus) {
+        soundImg.src = "images/mute.png";
+    }
+}
+
+function toggleSound() {
+    if (musicStatus) {
+        musicStatus = false;
+        backgroundMusic.load();
+        soundImg.src = "images/mute.png";
+    } else {
+        musicStatus = true;
+        backgroundMusic.play();
+        soundImg.src = "images/unmute.png";
+    }
 }
 
 function check() {
