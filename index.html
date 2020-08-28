@@ -5,12 +5,6 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     
-    <!--  Bootstrap  -->
-<!--
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
--->
-    
     <link rel="stylesheet" href="css/main.css">
     
 	<!-- javascript file -->
@@ -55,12 +49,40 @@
                 <img id="quit-btn" src="images/exit.png">
                 <img id="game-sound-btn" src="images/unmute.png" onclick="toggleSound()">
             </div>
-            <div id="code-maker-pallet">
-                <div id="color-maker-pallet-overlay"></div>
+            <div id="code-maker-palette">
+                <div id="color-maker-palette-overlay"></div>
             </div>
             <div class="bottom-fixed">
-                <div id="guesses"></div>
-                <div id="color-pallet">
+                <div id="guesses">
+                    <div class="row">
+                        <div class="attempt-number">
+                            <p>1</p>
+                        </div>
+                        <div class="guess-palette">
+                            <div class="code-peg-holder-6pegs"><div></div></div>
+                            <div class="code-peg-holder-6pegs"><div></div></div>
+                            <div class="code-peg-holder-6pegs"><div></div></div>
+                            <div class="code-peg-holder-6pegs"><div></div></div>
+                            <div class="code-peg-holder-6pegs"><div></div></div>
+                            <div class="code-peg-holder-6pegs"><div></div></div>
+                        </div>
+                        <div class="feedback-holder">
+                            <div>
+                                <div>
+                                    <div class="key-peg-holder"><div></div></div>
+                                    <div class="key-peg-holder"><div></div></div>
+                                    <div class="key-peg-holder"><div></div></div>
+                                </div>
+                                <div>
+                                    <div class="key-peg-holder"><div></div></div>
+                                    <div class="key-peg-holder"><div></div></div>
+                                    <div class="key-peg-holder"><div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="color-palette">
                     <div class="code-peg-holder"><div class="code-peg" id="color-red"></div></div>
                     <div class="code-peg-holder"><div class="code-peg" id="color-blue"></div></div>
                     <div class="code-peg-holder"><div class="code-peg" id="color-green"></div></div>

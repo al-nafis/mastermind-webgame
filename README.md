@@ -17,3 +17,4 @@ Things to do
 5. implement quit game button
 6. add animation
 7. implement credits section
+8. main overlay to display game not supported message for specific screen size
