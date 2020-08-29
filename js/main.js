@@ -146,11 +146,76 @@ function decode() {
     }
 }
 
+let currentRowCodePegsHolder = [];
+let currentRowCodePegs = [];
+let currentRowKeyPegsHolder = [];
+
 function setupInitialGuessRow() {
+    currentRowCodePegsHolder = []
+    currentRowCodePegs = [];
+    currentRowKeyPegsHolder = [];
+    
     const row = document.createElement("DIV");
     row.classList.add("row");
-    
     guesses.prepend(row);
+    
+    const attemptNumber = document.createElement("DIV");
+    attemptNumber.classList.add("attempt-number");
+    row.appendChild(attemptNumber);
+    
+    const p = document.createElement("P");
+    p.textContent = game.attempt;
+    attemptNumber.appendChild(p);
+    
+    
+    const guessPalette = document.createElement("DIV");
+    guessPalette.classList.add("guess-palette");
+    row.appendChild(guessPalette);
+    
+    for (let i=0; i<game.codeMaker.length; i++) {
+        const pegHolder = document.createElement("DIV");
+        if (game.difficultyLevel == Difficulty.ENGINEER) {
+            pegHolder.classList.add("code-peg-holder-6pegs");
+        } else {
+            pegHolder.classList.add("code-peg-holder-4pegs");
+        }
+        guessPalette.appendChild(pegHolder);
+        currentRowCodePegsHolder.push(pegHolder);
+    }
+    
+    
+    const feedbackHolder = document.createElement("DIV");
+    feedbackHolder.classList.add("feedback-holder");
+    row.appendChild(feedbackHolder);
+    
+    const feedbackHolderInnerDiv = document.createElement("DIV");
+    feedbackHolder.appendChild(feedbackHolderInnerDiv);
+    
+    let eachRowKeyPegs = 2;
+    if (game.difficultyLevel == Difficulty.ENGINEER) {
+        eachRowKeyPegs = 3;
+    }
+    
+    for (let i=0; i<2; i++) {
+        const keyPegHolderOuterDiv = document.createElement("DIV");
+        feedbackHolderInnerDiv.appendChild(keyPegHolderOuterDiv);
+        
+        for (let j=0; j<eachRowKeyPegs; j++) {
+            const keyPegHolder = document.createElement("DIV");
+            keyPegHolder.classList.add("key-peg-holder");
+            keyPegHolderOuterDiv.appendChild(keyPegHolder);
+            currentRowKeyPegsHolder.push(keyPegHolder);
+        }
+    }
+    
+//    TESTING
+    
+    console.log(currentRowCodePegsHolder);
+    console.log(currentRowKeyPegsHolder);
+    
+//    TESTING
+    
+    
     if (!musicStatus) {
         soundImg.src = "images/mute.png";
     }

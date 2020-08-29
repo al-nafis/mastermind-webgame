@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Aclonica&display=swap');
 
 $textColor: #ccc;
 $codeHolderBackgroundColor: #ffffff30;
@@ -210,21 +210,23 @@ main {
     bottom: 0;
     
     #guesses {
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
         @include hide-scrollbar();
         overflow-y: scroll;
         .row {
             display: flex;
             justify-content: center;
             height:15vw;
-            background: blue;
-            margin: 3px;
+            margin: 7px 3px;
             .attempt-number {
                 height: 100%;
                 width: 8%;
                 display: flex;
                 align-items: center;
-                border: 1px solid white;
                 p {
+                    font-family: 'Aclonica', cursive;
+                    font-size: .8rem;
                     margin: auto;
                 }
             }
@@ -232,7 +234,8 @@ main {
                 @include centerize();
                 height: 100%;
                 width: 72%;
-                border: 1px solid white;
+                border-right: 1px solid white;
+                border-left: 1px solid white;
                 .code-peg-holder-4pegs {
                     background: $codeHolderBackgroundColor;
                     border-radius: $border-radius-round;
@@ -279,10 +282,8 @@ main {
                 height: 100%;
                 width: 20%;
                 @include centerize();
-                border: 1px solid white;
                 div {
                     div {
-                        background: green;
                         display: flex;
                         justify-content: center;
                         .key-peg-holder {
@@ -291,12 +292,11 @@ main {
                             height: 4vw;
                             margin: 1vw;
                             border-radius: $border-radius-round;
-                            background: red;
+                            background: $codeHolderBackgroundColor;
                             div {
                                 width: 95%;
                                 height: 95%;
                                 border-radius: $border-radius-round;
-                                background: blue;
                             }
                             @media (min-width: 420px) and (min-height: 750px) {
                                 height: 15px;
