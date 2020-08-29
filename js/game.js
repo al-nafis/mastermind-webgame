@@ -6,12 +6,16 @@ const Difficulty = {
 
 const Colors = ["red", "blue", "green", "yellow", "white", "black"];
 
+const colorNotSet = "colorNotSet";
+
+const totalAttemptsLimit = 10;
+
 class Game {
     
     constructor(difficultyLevel) {
         this.difficultyLevel = difficultyLevel;
         this.totalMatch = 0;
-        this.turn = 1;
+        this.attempt = 1;
         this.codeMaker = getCodeMakerPattern();
         this.currentCodeBreakerPattern = [];
         
@@ -75,7 +79,7 @@ class Game {
         }
         
         //test
-        console.log("Turn: " + this.turn);
+        console.log("Attempt: " + this.attempt);
         console.log("Code Maker: " + cMaker);
         console.log("Code Breaker: " + cBreaker);
         console.log("Feedback: " + feedback);
@@ -86,6 +90,8 @@ class Game {
     
     isGameOver() {
         if (this.totalMatch == this.codeMaker.length) {
+            return true;
+        } else if (this.attempt >= totalAttemptsLimit) {
             return true;
         } else {
             return false;

@@ -1,4 +1,4 @@
-let welcomeMenu, mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, game, codeMakerPallet, soundImg, guesses;
+let welcomeMenu, mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, game, codeMakerPalette, soundImg, guesses, decodeBtn;
 
 let musicStatus = true;
 //let isGameOver = false;
@@ -6,6 +6,8 @@ const backgroundMusic = new Audio("sounds/Dreaming.ogg");
 
 const textColor = "#ccc";
 const textColorDisabled = "red";
+
+
 
 window.onload = function() {
     //screens
@@ -22,9 +24,10 @@ window.onload = function() {
     soundOffBtn = document.getElementById("sound-off-btn");
     
     //game screen items
-    codeMakerPallet = document.getElementById("code-maker-pallet");
+    codeMakerPalette = document.getElementById("code-maker-palette");
     soundImg = document.getElementById("game-sound-btn");
     guesses = document.getElementById("guesses");
+    decodeBtn = document.getElementById("decode-btn");
     
     mainMenu.style.display = "none";
     newGameMenu.style.display = "none";
@@ -35,6 +38,21 @@ window.onload = function() {
     document.getElementById("main-screen").style.display = "flex";
     
     backgroundMusic.preload = "auto";
+    
+    adjustGuessesHeight();
+    
+    //TESTING
+    menuScreen.style.display = "none";
+    gameScreen.style.display = "block";
+    game = new Game(Difficulty.BEGINNER);
+    setupGameScreen();
+    backgroundMusic.loop = true;
+    backgroundMusic.play();
+    //TESTING
+}
+
+window.onresize = function() {
+    setTimeout(adjustGuessesHeight(), 100);
 }
 
 function play() {
@@ -113,22 +131,91 @@ function setupGameScreen() {
         const color = document.createElement("DIV");
         color.classList.add("color-pegs-4");
         color.style.background = game.codeMaker[i];
-        codeMakerPallet.appendChild(color);
+        codeMakerPalette.appendChild(color);
     }
-    setupGuessRow();
+    setupInitialGuessRow();
 }
 
 function decode() {
-    game.turn++;
-    setupGuessRow();
+    game.attempt++;
+    setupInitialGuessRow();
     guesses.scrollTop = 0;
+    
+    if (game.isGameOver()) {
+        decodeBtn.disabled = true;
+    }
 }
 
-function setupGuessRow() {
+let currentRowCodePegsHolder = [];
+let currentRowCodePegs = [];
+let currentRowKeyPegsHolder = [];
+
+function setupInitialGuessRow() {
+    currentRowCodePegsHolder = []
+    currentRowCodePegs = [];
+    currentRowKeyPegsHolder = [];
+    
     const row = document.createElement("DIV");
     row.classList.add("row");
-    row.textContent = game.turn;
     guesses.prepend(row);
+    
+    const attemptNumber = document.createElement("DIV");
+    attemptNumber.classList.add("attempt-number");
+    row.appendChild(attemptNumber);
+    
+    const p = document.createElement("P");
+    p.textContent = game.attempt;
+    attemptNumber.appendChild(p);
+    
+    
+    const guessPalette = document.createElement("DIV");
+    guessPalette.classList.add("guess-palette");
+    row.appendChild(guessPalette);
+    
+    for (let i=0; i<game.codeMaker.length; i++) {
+        const pegHolder = document.createElement("DIV");
+        if (game.difficultyLevel == Difficulty.ENGINEER) {
+            pegHolder.classList.add("code-peg-holder-6pegs");
+        } else {
+            pegHolder.classList.add("code-peg-holder-4pegs");
+        }
+        guessPalette.appendChild(pegHolder);
+        currentRowCodePegsHolder.push(pegHolder);
+    }
+    
+    
+    const feedbackHolder = document.createElement("DIV");
+    feedbackHolder.classList.add("feedback-holder");
+    row.appendChild(feedbackHolder);
+    
+    const feedbackHolderInnerDiv = document.createElement("DIV");
+    feedbackHolder.appendChild(feedbackHolderInnerDiv);
+    
+    let eachRowKeyPegs = 2;
+    if (game.difficultyLevel == Difficulty.ENGINEER) {
+        eachRowKeyPegs = 3;
+    }
+    
+    for (let i=0; i<2; i++) {
+        const keyPegHolderOuterDiv = document.createElement("DIV");
+        feedbackHolderInnerDiv.appendChild(keyPegHolderOuterDiv);
+        
+        for (let j=0; j<eachRowKeyPegs; j++) {
+            const keyPegHolder = document.createElement("DIV");
+            keyPegHolder.classList.add("key-peg-holder");
+            keyPegHolderOuterDiv.appendChild(keyPegHolder);
+            currentRowKeyPegsHolder.push(keyPegHolder);
+        }
+    }
+    
+//    TESTING
+    
+    console.log(currentRowCodePegsHolder);
+    console.log(currentRowKeyPegsHolder);
+    
+//    TESTING
+    
+    
     if (!musicStatus) {
         soundImg.src = "images/mute.png";
     }
@@ -146,6 +233,43 @@ function toggleSound() {
     }
 }
 
+function adjustGuessesHeight() {
+    const wind = window.outerHeight;
+    if (wind < 750) {
+        guesses.style.maxHeight =(wind - 283) + "px";
+    } else {
+        guesses.style.maxHeight ="465px";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function check() {
     const codeBreaker = [];
     for (let i=0; i<game.codeMaker.length; i++) {
@@ -159,7 +283,7 @@ function check() {
     //turn number column
     const turn = document.createElement("TD");
     turn.classList.add("turns");
-    turn.innerHTML = game.turn;
+    turn.innerHTML = game.attempt;
     row.appendChild(turn);
     
     //breaker's code column
@@ -181,7 +305,7 @@ function check() {
     ];
     
     const feedback = game.getFeedback();
-    game.turn++;
+    game.attempt++;
     
     //feedback column
     const fb = document.createElement("TD");
