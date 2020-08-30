@@ -5,13 +5,14 @@ Things done
 - implement menu navigation
 - implement music
 - implement game screen partials
-- implement code maker's pallet
-- implement code breaker's pallet
+- implement code maker's palette
+- implement code breaker's palette
 - added code breakerl's guess container
 - implement Guesses Pattern
+- implement user interaction with the palette
 
 Things to do
-- implement user interaction with the pallet
+- implement dialog box
 - implement decode button functions
 - implement rules/help button
 - implement quit game button
