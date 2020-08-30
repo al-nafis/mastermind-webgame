@@ -12,7 +12,9 @@
 	 <script src="js/main.min.js"></script> 
 </head>
 <body>
-    <main id="main-screen">
+    <main>
+        
+        <!-- MENU SCREEN -->
         <div id="menu-screen">
             <img src="images/logo.png" width="90%"/>
             <div>    
@@ -43,6 +45,8 @@
                 </div>
             </div>
         </div>
+        
+        <!-- GAME SCREEN -->
         <div id="game-screen">
             <div id="toolbar">
                 <img id="rules-btn" src="images/idea.png">
@@ -55,16 +59,46 @@
             <div class="bottom-fixed">
                 <div id="guesses"></div>
                 <div id="color-palette">
-                    <div class="code-peg-holder"><div class="code-peg" id="color-red"></div></div>
-                    <div class="code-peg-holder"><div class="code-peg" id="color-blue"></div></div>
-                    <div class="code-peg-holder"><div class="code-peg" id="color-green"></div></div>
-                    <div class="code-peg-holder"><div class="code-peg" id="color-yellow"></div></div>
-                    <div class="code-peg-holder"><div class="code-peg" id="color-white"></div></div>
-                    <div class="code-peg-holder"><div class="code-peg" id="color-black"></div></div>
+                    <div class="code-peg-holder">
+                        <div class="code-peg" id="color-red" onclick="onClickCodePeg('red')"></div>
+                    </div>
+                    <div class="code-peg-holder">
+                        <div class="code-peg" id="color-blue" onclick="onClickCodePeg('blue')"></div>
+                    </div>
+                    <div class="code-peg-holder">
+                        <div class="code-peg" id="color-green" onclick="onClickCodePeg('green')"></div>
+                    </div>
+                    <div class="code-peg-holder">
+                        <div class="code-peg" id="color-yellow" onclick="onClickCodePeg('yellow')"></div>
+                    </div>
+                    <div class="code-peg-holder">
+                        <div class="code-peg" id="color-white" onclick="onClickCodePeg('white')"></div>
+                    </div>
+                    <div class="code-peg-holder">
+                        <div class="code-peg" id="color-black" onclick="onClickCodePeg('black')"></div>
+                    </div>
                 </div>
-                <button id="decode-btn" onclick="decode()">Decode</button>
+                <div id="buttons-holder">
+                    <button id="decode-btn" onclick="decode()">Decode</button>
+                    <button id="clear-btn" onclick="clearRow()">Clear</button>
+                </div>
             </div>
         </div>
+        
+        <!-- DIALOG BOX -->
+        <div id="dialog-box">
+            <div id="dialog-container">
+                <div id="dialog-header">
+                    <h3 id="dialog-title"></h3>
+                    <img id="dialog-close-btn" onclick="closeDialog()" src="images/close.png" />
+                </div>
+                <p id="dialog-body">fghj</p>
+                <div id="dialog-buttons">
+                    <button></button>
+                </div>
+            </div>
+        </div>
+        
     </main>
 </body>
 </html>
