@@ -50,11 +50,12 @@
         <div id="game-screen">
             <div id="toolbar">
                 <img id="rules-btn" src="images/idea.png">
-                <img id="quit-btn" src="images/exit.png">
-                <img id="game-sound-btn" src="images/unmute.png" onclick="toggleSound()">
+                <img id="quit-btn" onclick="onClickQuitButton()" src="images/exit.png">
+                <img id="restart-btn" onclick="onClickRestartButton()" src="images/restart.png">
+                <img id="game-sound-btn" onclick="toggleSound()">
             </div>
             <div id="code-maker-palette">
-                <div id="color-maker-palette-overlay"></div>
+                <div id="code-maker-palette-overlay"></div>
             </div>
             <div class="bottom-fixed">
                 <div id="guesses"></div>
@@ -92,9 +93,9 @@
                     <h3 id="dialog-title"></h3>
                     <img id="dialog-close-btn" onclick="closeDialog()" src="images/close.png" />
                 </div>
-                <p id="dialog-body">fghj</p>
+                <p id="dialog-body"></p>
                 <div id="dialog-buttons">
-                    <button id="dialog-restart-btn" onclick="restartGame()">Restart</button>
+                    <button id="dialog-restart-btn" onclick="restartGame()"></button>
                     <button id="dialog-quit-btn" onclick="quitGame()"></button>
                 </div>
             </div>

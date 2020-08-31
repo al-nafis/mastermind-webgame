@@ -78,14 +78,6 @@ class Game {
                 }
             }
         }
-        
-        //test
-        console.log("Attempt: " + this.attempt);
-        console.log("Code Maker: " + cMaker);
-        console.log("Code Breaker: " + cBreaker);
-        console.log("Feedback: " + feedback);
-        console.log("------------------------------");
-        
         return feedback;
     }
     
