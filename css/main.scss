@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Aclonica&display=swap');
 
-$textColor: #ccc;
+$textColor: white;
 $codeHolderBackgroundColor: #ffffff30;
 $border-radius: 3px;
 $border-radius-round: 50%;
@@ -142,6 +142,12 @@ main {
 #toolbar {
     height: 50px;
     padding: 10px;
+    img {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
     #rules-btn {
         height: 35px;
         width: 35px;
@@ -152,6 +158,13 @@ main {
         height: 35px;
         width: 35px;
         float: right;
+    }
+    
+    #restart-btn {
+        height: 35px;
+        width: 35px;
+        float: right;
+        margin-right: 15px;
     }
     
     #game-sound-btn {
@@ -170,7 +183,7 @@ main {
     height: 16vw;
     display: flex;
     justify-content: center;
-    #color-maker-palette-overlay {
+    #code-maker-palette-overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -178,21 +191,16 @@ main {
         height: 100%;
         width: 100%;
         background: red; //update color
-        //TESTING
-        display: none;
     }
-    .color-pegs-4 {
+    .code-maker-color-peg {
         height: 13vw;
         width: 13vw;
         margin: 1.5vw 5px;
         border-radius: $border-radius-round;
     }
-    .color-pegs-6 {
-        
-    }
     @media (min-width: 420px) and (min-height: 750px) {
         height: 60px;
-        .color-pegs-4 {
+        .code-maker-color-peg {
             height: 50px;
             width: 50px;
             margin: 5px;
@@ -200,7 +208,7 @@ main {
     }
     @media (min-width: 420px) {
         height: 60px;
-        .color-pegs-4 {
+        .code-maker-color-peg {
             height: 50px;
             width: 50px;
             margin: 5px;
@@ -215,8 +223,8 @@ main {
     bottom: 0;
     
     #guesses {
-        border-top: 1px solid white;
-        border-bottom: 1px solid white;
+        border-top: 1px solid $textColor;
+        border-bottom: 1px solid $textColor;
         @include hide-scrollbar();
         overflow-y: scroll;
         .row {
@@ -344,6 +352,9 @@ main {
                 height: 12.5vw;
                 width: 12.5vw;
                 border-radius: $border-radius-round;
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
             #color-red {
@@ -406,6 +417,9 @@ main {
             border-radius: $border-radius;
             background: #00000000;
             outline: none;
+            &:hover {
+                cursor: pointer;
+            }
             &:active {
                 background: #ffffff05;
             }
