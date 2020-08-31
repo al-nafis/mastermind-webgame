@@ -10,10 +10,11 @@ Things done
 - added code breakerl's guess container
 - implement Guesses Pattern
 - implement user interaction with the palette
-
-Things to do
 - implement dialog box
 - implement decode button functions
+
+Things to do
+- implement post game scenarios
 - implement rules/help button
 - implement quit game button
 - add animation

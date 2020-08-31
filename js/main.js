@@ -1,4 +1,4 @@
-let welcomeMenu, mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, dialogBox, game, codeMakerPalette, soundImg, guesses, decodeBtn, clearBtn, dialogBody;
+let welcomeMenu, mainMenu, newGameMenu, optionsMenu, creditsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, dialogBox, game, codeMakerPalette, soundImg, guesses, decodeBtn, clearBtn, dialogHeader, dialogTitle, dialogCloseBtn, dialogBody, dialogButtons, dialogRestartBtn, dialogQuitBtn;
 
 let musicStatus = true;
 const backgroundMusic = new Audio("sounds/Dreaming.ogg");
@@ -76,7 +76,13 @@ window.onload = function() {
     guesses = getId("guesses");
     decodeBtn = getId("decode-btn");
     clearBtn = getId("clear-btn");
+    dialogHeader = getId("dialog-header");
+    dialogTitle = getId("dialog-title");
+    dialogCloseBtn = getId("dialog-close-btn");
     dialogBody = getId("dialog-body");
+    dialogButtons = getId("dialog-buttons");
+    dialogRestartBtn = getId("dialog-restart-btn");
+    dialogQuitBtn = getId("dialog-quit-btn");
     
     displayNone(mainMenu);
     displayNone(newGameMenu);
@@ -94,7 +100,7 @@ window.onload = function() {
     //TESTING
     displayNone(menuScreen);
     displayBlock(gameScreen);
-    game = new Game(Difficulty.BEGINNER);
+    game = new Game(Difficulty.DEVELOPER);
     setupGameScreen();
 //    backgroundMusic.loop = true;
 //    backgroundMusic.play();
@@ -180,6 +186,7 @@ let emptyPegColor = "rgba(0, 0, 0, 0)";
 function setupInitialGuessRow() {
     currentRowCodePegs = [];
     currentRowKeyPegsHolder = [];
+    game.currentCodeBreakerPattern = [];
     
     //adding a row
     const row = createDiv();
@@ -250,44 +257,60 @@ function onClickCodePeg(color) {
     let allPegsFilled = true;
     for (let i=0; i<currentRowCodePegs.length; i++) {
         if (game.difficultyLevel == Difficulty.BEGINNER && currentRowCodePegs[i].style.backgroundColor == color) {
-            showDialog(true, "Duplicates not allowed in Beginner level");
+            showDialog(DialogCases.DUPLICATES);
             allPegsFilled = false;
             break;
         } else if(currentRowCodePegs[i].style.backgroundColor == emptyPegColor) {
             updateBackgroundColor(currentRowCodePegs[i], color);
+            game.currentCodeBreakerPattern.push(color);
+            
+            //testing
+            console.log(game.currentCodeBreakerPattern);
+            //testing
+            
             allPegsFilled = false;
             break;
         }
     }
     if (allPegsFilled) {
-        showDialog(true, "All pegs are filled");
+        showDialog(DialogCases.PEGS_FILLED);
     }
-}
-
-function showDialog(isTemporary, body) {
-    const dialogTime = 2000;
-    if (isTemporary) {
-        updateContentText(dialogBody, body);
-        displayFlex(dialogBox);
-        setTimeout(function() {
-            closeDialog()
-        }, dialogTime);
-    }
-}
-
-function closeDialog() {
-    updateContentText(dialogBody, "");
-    displayNone(dialogBox);
 }
 
 function decode() {
-    game.attempt++;
-    setupInitialGuessRow();
-    guesses.scrollTop = 0;
+    let allPegsFilled = true;
+    for (let i=0; i<currentRowCodePegs.length; i++) {
+        if (currentRowCodePegs[i].style.backgroundColor == emptyPegColor) {
+            allPegsFilled = false;
+        }
+    };
     
-    if (game.isGameOver()) {
-        decodeBtn.disabled = true;
-        clearBtn.disabled = true;
+    //testing
+    console.log(game.currentCodeBreakerPattern);
+    //testing
+    
+    if (allPegsFilled) {
+        const feedback = game.getFeedback();
+
+        for ( let i=0; i< feedback.length; i++) {
+            const keyPeg = createDiv();
+            updateBackgroundColor(keyPeg, feedback[i]);
+            currentRowKeyPegsHolder[i].appendChild(keyPeg);
+        }
+
+        console.log(game.isGameOver());
+
+        if (game.isGameOver() && game.userWon) {
+            showDialog(DialogCases.GAME_OVER_WIN);
+        } else if (game.isGameOver() && !game.userWon) {
+            showDialog(DialogCases.GAME_OVER_LOSE);
+        } else {
+            game.attempt++;
+            setupInitialGuessRow();
+            guesses.scrollTop = 0;
+        }
+    } else {
+        showDialog(DialogCases.PEG_NOT_FILLED);
     }
 }
 
@@ -295,6 +318,7 @@ function clearRow() {
     currentRowCodePegs.forEach(function(item) {
         updateBackgroundColor(item, emptyPegColor);
     });
+    game.currentCodeBreakerPattern = [];
 }
 
 function toggleSound() {
@@ -318,86 +342,53 @@ function adjustGuessesHeight() {
     }
 }
 
+const DialogCases = {
+    PEGS_FILLED: "All pegs are filled",
+    PEG_NOT_FILLED: "All pegs must be filled",
+    DUPLICATES: "Duplicates are not allowed in Beginner level",
+    GAME_OVER_WIN: "Congrats! You have decoded the pattern successfully",
+    GAME_OVER_LOSE: "You have failed to decode the pattern"
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function check() {
-    const codeBreaker = [];
-    for (let i=0; i<game.codeMaker.length; i++) {
-        codeBreaker.push(Colors[Math.floor(Math.random() * Colors.length)]);
+function showDialog(dialogCase) {
+    const temporaryDialogTime = 1500;
+    
+    updateContentText(dialogBody, dialogCase);
+    displayFlex(dialogBox);
+    
+    switch (dialogCase) {
+        case DialogCases.GAME_OVER_WIN:
+        case DialogCases.GAME_OVER_LOSE:
+            updateContentText(dialogTitle, "Game Over");
+            updateContentText(dialogQuitBtn, "Menu");
+            displayNone(dialogCloseBtn);
+            displayBlock(dialogHeader);
+            displayBlock(dialogRestartBtn);
+            displayBlock(dialogQuitBtn);
+            displayFlex(dialogButtons);
+            break;
+        default:
+            setTimeout(function() {
+                closeDialog()
+            }, temporaryDialogTime);
     }
-    game.currentCodeBreakerPattern = codeBreaker;
-    
-    const table = getId("game");
-    const row = document.createElement("TR");
-    
-    //turn number column
-    const turn = document.createElement("TD");
-    addClass(turn, "turns");
-    turn.innerHTML = game.attempt;
-    row.appendChild(turn);
-    
-    //breaker's code column
-    const breakingCodesColumn = document.createElement("TD");
-    for (let i=0; i<codeBreaker.length; i++) {
-        const code = createDiv();
-        addClass(code, "box");
-        code.style.backgroundColor = codeBreaker[i];
-        breakingCodesColumn.appendChild(code);
-    }
-    
-    row.appendChild(breakingCodesColumn);
-            
-    const codeMaker = [
-        game.codeMaker[0],
-        game.codeMaker[1],
-        game.codeMaker[2],
-        game.codeMaker[3]
-    ];
-    
-    const feedback = game.getFeedback();
-    game.attempt++;
-    
-    //feedback column
-    const fb = document.createElement("TD");
-    for(let i=0; i<feedback.length; i++) {
-        const peg = createDiv();
-        addClass(peg, "peg");
-        peg.style.backgroundColor = feedback[i];
-        fb.appendChild(peg);
-    }
-    row.appendChild(fb);
-    
-    table.appendChild(row);
-    
-    //checking for game over
-    if (game.isGameOver()) {
-        getId("gs").innerHTML += "Game Over";
-        getId("check").disabled = true;
-    }
+}
+
+function closeDialog() {
+    updateContentText(dialogBody, "");
+    updateContentText(dialogQuitBtn, "");
+    displayNone(dialogBox);
+    displayBlock(dialogCloseBtn);
+    displayNone(dialogHeader);
+    displayNone(dialogRestartBtn);
+    displayNone(dialogQuitBtn);
+    displayNone(dialogButtons);
+}
+
+function restartGame() {
+    console.log("restart game");
+}
+
+function quitGame() {
+    console.log("quit game");
 }

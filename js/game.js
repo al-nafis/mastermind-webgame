@@ -6,8 +6,6 @@ const Difficulty = {
 
 const Colors = ["red", "blue", "green", "yellow", "white", "black"];
 
-const colorNotSet = "colorNotSet";
-
 const totalAttemptsLimit = 10;
 
 class Game {
@@ -18,6 +16,7 @@ class Game {
         this.attempt = 1;
         this.codeMaker = getCodeMakerPattern();
         this.currentCodeBreakerPattern = [];
+        this.userWon = false;
         
         //private function
         function getCodeMakerPattern() {
@@ -53,6 +52,7 @@ class Game {
         const feedback = [];
         const cMaker = this.codeMaker.slice();
         const cBreaker = this.currentCodeBreakerPattern.slice();
+        this.totalMatch = 0;
         
         //checking for exact match
         for (let i=0; i<cMaker.length; i++) {
@@ -60,6 +60,7 @@ class Game {
                 feedback.push(parallelMatchColor);
                 cMaker[i] = parallelMatch;
                 cBreaker[i] = parallelMatch;
+                this.totalMatch++;
             }
         }
         
@@ -90,6 +91,7 @@ class Game {
     
     isGameOver() {
         if (this.totalMatch == this.codeMaker.length) {
+            this.userWon = true;
             return true;
         } else if (this.attempt >= totalAttemptsLimit) {
             return true;
