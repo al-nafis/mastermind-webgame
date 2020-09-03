@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Aclonica&display=swap');
-
 $textColor: white;
-$codeHolderBackgroundColor: #ffffff30;
+$codeHolderBackgroundColor: #525252;
 $border-radius: 3px;
 $border-radius-round: 50%;
+$standardScreenHeight: 'min-height: 750px';
+$standardScreenWidth: 'min-width: 420px';
 
 @mixin prefix($property, $value){
 	#{'-webkit-' + $property} : $value;
@@ -46,6 +46,16 @@ $border-radius-round: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@font-face {
+   font-family: Aclonica;
+   src: url('../fonts/Aclonica.ttf');
+}
+
+@font-face {
+   font-family: Special Elite;
+   src: url('../fonts/SpecialElite.ttf');
 }
 
 .testing1{border:1px solid pink;background-color:blue;}
@@ -100,12 +110,12 @@ main {
     align-items: center;
     width: 100vw;
     height: 100%;
-    @media (min-width: 420px) {
+    @media ($standardScreenWidth) {
         border: 2px solid #525252;
         border-radius: 2%;
         width: 420px;
     };
-    @media (min-height: 750px) {
+    @media ($standardScreenHeight) {
         border: 2px solid #525252;
         border-radius: 2%;
         height: 750px;
@@ -113,6 +123,7 @@ main {
 }
 
 #menu-screen {
+    overflow: visible;
     position: absolute;
     height: 55%;
     text-align: center;
@@ -120,15 +131,31 @@ main {
         margin-bottom: 50px;
     }
     div {
-        a {
-            text-decoration: none;
-            color: $textColor;
-            &:hover {
-                cursor: pointer;
+        p {
+            margin: 30px 0;
+            font-size: 6.8vw;
+            a {
+                text-decoration: none;
+                color: $textColor;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            @media ($standardScreenWidth) and ($standardScreenHeight) {
+                font-size: 25px;
+            }
+            @media ($standardScreenWidth) {
+                font-size: 25px;
             }
         }
-        p {
-          margin: 30px 0;  
+        .header {
+            font-size: 7.5vw;
+            @media ($standardScreenWidth) and ($standardScreenHeight) {
+                font-size: 30px;
+            }
+            @media ($standardScreenWidth) {
+                font-size: 30px;
+            }
         }
     }
 }
@@ -141,37 +168,37 @@ main {
 
 #toolbar {
     height: 50px;
-    padding: 10px;
+    padding: 15px 10px;
     img {
+        height: 25px;
+        width: 25px;
         &:hover {
             cursor: pointer;
         }
     }
     
     #rules-btn {
-        height: 35px;
-        width: 35px;
         float: left;
     }
     
+    #difficulty-level-display {
+        float: left;
+        margin: 5px 0 0 20px;
+        font-size: .6em;
+    }
+    
     #quit-btn {
-        height: 35px;
-        width: 35px;
         float: right;
     }
     
     #restart-btn {
-        height: 35px;
-        width: 35px;
         float: right;
-        margin-right: 15px;
+        margin-right: 25px;
     }
     
     #game-sound-btn {
-        height: 35px;
-        width: 35px;
         float: right;
-        margin-right: 15px;
+        margin-right: 25px;
     }
 }
 
@@ -198,7 +225,7 @@ main {
         margin: 1.5vw 5px;
         border-radius: $border-radius-round;
     }
-    @media (min-width: 420px) and (min-height: 750px) {
+    @media ($standardScreenWidth) and ($standardScreenHeight) {
         height: 60px;
         .code-maker-color-peg {
             height: 50px;
@@ -206,7 +233,7 @@ main {
             margin: 5px;
         }
     }
-    @media (min-width: 420px) {
+    @media ($standardScreenWidth) {
         height: 60px;
         .code-maker-color-peg {
             height: 50px;
@@ -256,14 +283,14 @@ main {
                     @include centerize();
                     div {
                         border-radius: $border-radius-round;
-                        height: 95%;
-                        width: 95%;
+                        height: 90%;
+                        width: 90%;
                     }
-                    @media (min-width: 420px) and (min-height: 750px) {
+                    @media ($standardScreenWidth) and ($standardScreenHeight) {
                         height: 55px;
                         width: 55px;
                     }
-                    @media (min-width: 420px) {
+                    @media ($standardScreenWidth) {
                         height: 55px;
                         width: 55px;
                     }
@@ -275,11 +302,11 @@ main {
                     height: 8vw;
                     width: 8vw;
                     @include centerize();
-                    @media (min-width: 420px) and (min-height: 750px) {
+                    @media ($standardScreenWidth) and ($standardScreenHeight) {
                         height: 35px;
                         width: 35px;
                     }
-                    @media (min-width: 420px) {
+                    @media ($standardScreenWidth) {
                         height: 35px;
                         width: 35px;
                     }
@@ -300,8 +327,8 @@ main {
                         justify-content: center;
                         .key-peg-holder {
                             @include centerize();
-                            width: 4vw;
-                            height: 4vw;
+                            width: 6vw;
+                            height: 6vw;
                             margin: 1vw;
                             border-radius: $border-radius-round;
                             background: $codeHolderBackgroundColor;
@@ -310,26 +337,26 @@ main {
                                 height: 80%;
                                 border-radius: $border-radius-round;
                             }
-                            @media (min-width: 420px) and (min-height: 750px) {
-                                height: 15px;
-                                width: 15px;
+                            @media ($standardScreenWidth) and ($standardScreenHeight) {
+                                height: 25px;
+                                width: 25px;
                                 margin: 5px;
                             }
 
-                            @media (min-width: 420px) {
-                                height: 15px;
-                                width: 15px;
+                            @media ($standardScreenWidth) {
+                                height: 25px;
+                                width: 25px;
                                 margin: 5px;
                             }
                         }
                     }
                 }
             }
-            @media (min-width: 420px) and (min-height: 750px) {
+            @media ($standardScreenWidth) and ($standardScreenHeight) {
                 height: 60px;
             }
 
-            @media (min-width: 420px) {
+            @media ($standardScreenWidth) {
                 height: 60px;
             }
         }
@@ -345,12 +372,11 @@ main {
             margin: 5px;
             background: $codeHolderBackgroundColor;
             border-radius: $border-radius-round;
-            display: inline-block;
-            padding-top: 1px;
+            @include centerize();
             .code-peg {
                 margin: auto;
-                height: 12.5vw;
-                width: 12.5vw;
+                height: 90%;
+                width: 90%;
                 border-radius: $border-radius-round;
                 &:hover {
                     cursor: pointer;
@@ -381,24 +407,14 @@ main {
                 background: black;
             }
             
-            @media (min-width: 420px) and (min-height: 750px) {
+            @media ($standardScreenWidth) and ($standardScreenHeight) {
                 height: 52px;
                 width: 52x;
-                padding-top: 2px;
-                .code-peg {
-                    height: 48px;
-                    width: 48px;
-                }
             }
             
-            @media (min-width: 420px) {
+            @media ($standardScreenWidth) {
                 height: 52px;
                 width: 52px;
-                padding-top: 2px;
-                .code-peg {
-                    height: 48px;
-                    width: 48px;
-                }
             }
         }
     }
@@ -456,6 +472,9 @@ main {
                 right: 2px;
                 height: 20px;
                 width: 20px;
+                &:hover {
+                    cursor: pointer;
+                }
             }
         }
         #dialog-body {
@@ -479,6 +498,9 @@ main {
                 border-radius: $border-radius;
                 background: #00000000;
                 outline: none;
+                &:hover {
+                    cursor: pointer;
+                }
                 &:active {
                     background: #ffffff05;
                 }
@@ -487,3 +509,77 @@ main {
     }
 }
 
+#how-to-play {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: black;
+    z-index: 500;
+    #htp-header {
+        @include centerize();
+        height: 10%;
+        position: relative;
+        img {
+            position: absolute;
+            margin-top: -5px;
+            right: 5vw;
+            width: 25px;
+            &:hover {
+                cursor: pointer;
+            }
+            @media ($standardScreenWidth) and ($standardScreenHeight) {
+                right: 30px;
+            }
+            @media ($standardScreenWidth) {
+                right: 30px;
+            }
+        }
+        h3 {
+            text-align: center;
+        }
+    }
+    #htp-body {
+        height: 90%;
+        padding: 15px;
+        font-family: 'Aclonica', cursive;
+        font-size: .6em;
+        line-height: 20px;
+        overflow-y: scroll;
+        @include hide-scrollbar();
+        p {
+            margin: 20px 0;
+        }
+        table {
+            tr {
+                td {
+                    vertical-align:top;
+                    padding: 10px 0 10px 10px;
+                }
+            }
+        }
+    }
+}
+
+#not-supported-div {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: black;
+    font-size: .7em;
+    padding: 20px;
+    z-index: 600;
+    @media (max-width: 319px) {
+        @include centerize();
+        text-align: center;
+    }
+    @media (max-height: 549px) {
+        @include centerize();
+        text-align: center;
+    }
+}

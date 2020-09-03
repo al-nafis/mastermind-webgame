@@ -19,29 +19,25 @@
             <img src="images/logo.png" width="90%"/>
             <div>    
                 <div id="welcome-menu" class="position-absolute w-100">
-                    <a onclick="play()"><p>Play</p></a>
+                    <p><a onclick="play()">Play</a></p>
                 </div>
                 <div id="main-menu" class="position-absolute w-100">
-                    <a onclick="newGame()"><p>New Game</p></a>
-                    <a onclick="options()"><p>Options</p></a>
-                    <a onclick="credits()"><p>Credits</p></a>
+                    <p><a onclick="newGame()">New Game</a></p>
+                    <p><a onclick="onClickHtpButton()">How to Play</a></p>
+                    <p><a onclick="options()">Options</a></p>
                 </div>
                 <div id="new-game-menu" class="position-absolute w-100">
-                    <p>Choose Your Difficulty</p>
-                    <a onclick="startGame(Difficulty.BEGINNER)"><p>Beginner</p></a>
-                    <a onclick="startGame(Difficulty.DEVELOPER)"><p>Developer</p></a>
-                    <a onclick="startGame(Difficulty.ENGINEER)"><p>Engineer</p></a>
-                    <a class="back-btn" onclick="back()"><p>Back</p></a>
+                    <p class="header">Choose Your Difficulty</p>
+                    <p><a onclick="startGame(Difficulty.BEGINNER)">Beginner</a></p>
+                    <p><a onclick="startGame(Difficulty.DEVELOPER)">Developer</a></p>
+                    <p><a onclick="startGame(Difficulty.ENGINEER)">Engineer</a></p>
+                    <p><a class="back-btn" onclick="back()">Back</a></p>
                 </div>
                 <div id="options-menu" class="position-absolute w-100">
-                    <p>Sound</p>
-                    <a id="sound-on-btn" onclick="soundOn()"><p>On</p></a>
-                    <a id="sound-off-btn" onclick="soundOff()"><p>Off</p></a>
-                    <a onclick="back()"><p>Back</p></a>
-                </div>
-                <div id="credits-menu" class="position-absolute w-100">
-                    <p>Credits</p>
-                    <a id="back-btn" onclick="back()"><p>Back</p></a>
+                    <p class="header">Sound</p>
+                    <p><a id="sound-on-btn" onclick="soundOn()">On</a></p>
+                    <p><a id="sound-off-btn" onclick="soundOff()">Off</a></p>
+                    <p><a onclick="back()">Back</a></p>
                 </div>
             </div>
         </div>
@@ -49,7 +45,8 @@
         <!-- GAME SCREEN -->
         <div id="game-screen">
             <div id="toolbar">
-                <img id="rules-btn" src="images/idea.png">
+                <img id="rules-btn" onclick="onClickHtpButton()" src="images/idea.png">
+                <p id="difficulty-level-display"></p>
                 <img id="quit-btn" onclick="onClickQuitButton()" src="images/exit.png">
                 <img id="restart-btn" onclick="onClickRestartButton()" src="images/restart.png">
                 <img id="game-sound-btn" onclick="toggleSound()">
@@ -80,7 +77,7 @@
                     </div>
                 </div>
                 <div id="buttons-holder">
-                    <button id="decode-btn" onclick="decode()">Decode</button>
+                    <button id="break-btn" onclick="breakCode()">Break</button>
                     <button id="clear-btn" onclick="clearRow()">Clear</button>
                 </div>
             </div>
@@ -99,6 +96,49 @@
                     <button id="dialog-quit-btn" onclick="quitGame()"></button>
                 </div>
             </div>
+        </div>
+        
+        <div id="how-to-play">
+            <div id="htp-header">
+                <img id="htp-close-btn" onclick="closeHtp()" src="images/close.png">
+                <h3>How to Play</h3>
+            </div>
+            <div id="htp-body">
+                <p>There are 3 different Difficulty Levels</p>
+                <table>
+                    <tr>
+                        <td>BEGINNER:</td>
+                        <td>4 Code Pegs - No Duplicate Colors</td>
+                    </tr>
+                    <tr>
+                        <td>DEVELOPER:</td>
+                        <td>4 Code Pegs - Duplicate Colors</td>
+                    </tr>
+                    <tr>
+                        <td>ENGINEER:</td>
+                        <td>6 Code Pegs - Duplicate Colors</td>
+                    </tr> 
+                </table>
+                <p>The Objective of the game is to break the existing code pattern that is initially set up.</p>
+                <p>The code is the sequence of different colored pegs. You get a specific number of attempts. For each attempt, you will try to guess the right combination of the code pegs by selecting colors and adding them to the current attempt row by clicking or tapping them.</p>
+                <p>Once you have filled up the current row with colors, hit the BREAK button. You will get a feedback on the right side of your guessed pattern. The feedback will be either BLACK or WHITE pegs. You can also click on the CLEAR button the clear the current row before you get a feedback. </p>
+                <table>
+                    <tr>
+                        <td><span style="background: black; color: white">BLACK</span></td>
+                        <td>One of your guess pegs have the correct color and position</td>
+                    </tr>
+                    <tr>
+                        <td><span style="background: white; color: black">WHITE</span></td>
+                        <td>One of your guess pegs have the corrent color but wrong position</td>
+                    </tr>
+                </table>
+                <p>Based on the feedback, you will compare previous attempts to each other and use logic to figure out what the right pattern would be.</p>
+                <p>Good Luck!</p>
+            </div>
+        </div>
+        
+        <div id="not-supported-div">
+            <p>This game is not supported in the current screen size. Please try resizing the browser</p>
         </div>
         
     </main>

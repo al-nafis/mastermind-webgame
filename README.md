@@ -14,11 +14,17 @@ Things done
 - implement post game scenarios
 - implement quit game button
 - implement restart game button
+- implement rules/help button
+- replace credits section with how to play
+- fix menu items sizing according to different screen dimension
+- main overlay to display game not supported message for specific screen size
+- change the decode button name to Break
+- modify pegcolorholder to make it identifiable
 
+--- remove the outer div in menu screen ---
 
 Things to do
-- implement rules/help button
-- fix menu items sizing according to different screen dimension
+- add images as backgrounds in color palettes
+- add review section after the game is over
 - add animation
-- implement credits section (if have any)
-- main overlay to display game not supported message for specific screen size
+- add images in how to play section
