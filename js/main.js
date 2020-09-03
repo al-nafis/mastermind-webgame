@@ -1,9 +1,10 @@
 let welcomeMenu, mainMenu, newGameMenu, optionsMenu, 
-    creditsMenu, soundOnBtn, soundOffBtn, menuScreen, 
+    soundOnBtn, soundOffBtn, menuScreen, 
     gameScreen, dialogBox, game, codeMakerPalette, 
-    codeMakerPaletteOverlay, soundImg, guesses, decodeBtn, 
-    clearBtn, dialogHeader, dialogTitle, dialogCloseBtn, 
-    dialogBody, dialogButtons, dialogRestartBtn, dialogQuitBtn;
+    codeMakerPaletteOverlay, howToPlay, difficultyLevelDisplay,
+    soundImg, guesses, dialogHeader, 
+    dialogTitle, dialogCloseBtn, dialogBody, 
+    dialogButtons, dialogRestartBtn, dialogQuitBtn;
 
 let codeMakerCodePegs = [];
 let guessCodeRows = [];
@@ -13,9 +14,9 @@ let emptyPegColor = "rgba(0, 0, 0, 0)";
 let textColor = "";
 
 let musicStatus = true;
-const backgroundMusic = new Audio("sounds/Dreaming.ogg");
+const backgroundMusic = new Audio("sounds/original/Dreaming.ogg");
 
-const textColorDisabled = "red";
+const textColorDisabled = "#525252";
 
 const DialogCases = {
     PEGS_FILLED: "All pegs are filled",
@@ -29,7 +30,7 @@ const DialogCases = {
 
 
 // reusable ui methods
-function getId(id) {
+function viewById(id) {
     return document.getElementById(id);
 }
 
@@ -78,48 +79,48 @@ function updateSoundUiOff() {
 
 window.onload = function() {
     //screens
-    welcomeMenu = getId("welcome-menu");
-    mainMenu = getId("main-menu");
-    newGameMenu = getId("new-game-menu");
-    optionsMenu = getId("options-menu");
-    creditsMenu = getId("credits-menu");
-    menuScreen = getId("menu-screen");
-    gameScreen = getId("game-screen");
-    dialogBox = getId("dialog-box");
+    welcomeMenu = viewById("welcome-menu");
+    mainMenu = viewById("main-menu");
+    newGameMenu = viewById("new-game-menu");
+    optionsMenu = viewById("options-menu");
+    menuScreen = viewById("menu-screen");
+    gameScreen = viewById("game-screen");
+    dialogBox = viewById("dialog-box");
 
     //buttons
-    soundOnBtn = getId("sound-on-btn");
-    soundOffBtn = getId("sound-off-btn");
+    soundOnBtn = viewById("sound-on-btn");
+    soundOffBtn = viewById("sound-off-btn");
     
     //game screen items
-    codeMakerPalette = getId("code-maker-palette");
-    codeMakerPaletteOverlay = getId("code-maker-palette-overlay");
-    soundImg = getId("game-sound-btn");
-    guesses = getId("guesses");
-    decodeBtn = getId("decode-btn");
-    clearBtn = getId("clear-btn");
-    dialogHeader = getId("dialog-header");
-    dialogTitle = getId("dialog-title");
-    dialogCloseBtn = getId("dialog-close-btn");
-    dialogBody = getId("dialog-body");
-    dialogButtons = getId("dialog-buttons");
-    dialogRestartBtn = getId("dialog-restart-btn");
-    dialogQuitBtn = getId("dialog-quit-btn");
+    howToPlay = viewById("how-to-play");
+    difficultyLevelDisplay = viewById("difficulty-level-display");
+    codeMakerPalette = viewById("code-maker-palette");
+    codeMakerPaletteOverlay = viewById("code-maker-palette-overlay");
+    soundImg = viewById("game-sound-btn");
+    guesses = viewById("guesses");
+    dialogHeader = viewById("dialog-header");
+    dialogTitle = viewById("dialog-title");
+    dialogCloseBtn = viewById("dialog-close-btn");
+    dialogBody = viewById("dialog-body");
+    dialogButtons = viewById("dialog-buttons");
+    dialogRestartBtn = viewById("dialog-restart-btn");
+    dialogQuitBtn = viewById("dialog-quit-btn");
     
     displayNone(mainMenu);
     displayNone(newGameMenu);
     displayNone(optionsMenu);
-    displayNone(creditsMenu);
-    
     displayNone(gameScreen);
     displayNone(dialogBox);
-    displayFlex(document.getElementsByTagName("main")[0]);
     
     textColor = document.getElementsByTagName('body')[0].style.color
     
     backgroundMusic.preload = "auto";
     
     adjustGuessesHeight();
+    
+    setTimeout(function() {
+        displayFlex(document.getElementsByTagName("main")[0]);
+    }, 1000)
 }
 
 window.onresize = function() {
@@ -148,15 +149,9 @@ function options() {
     }
 }
 
-function credits() {
-    displayNone(mainMenu);
-    displayBlock(creditsMenu);
-}
-
 function back() {
     displayNone(newGameMenu);
     displayNone(optionsMenu);
-    displayNone(creditsMenu);
     displayBlock(mainMenu);
 }
 
@@ -191,6 +186,8 @@ function setupGameScreen() {
     } else {
         soundImg.src = "images/mute.png";
     }
+    
+    updateContentText(difficultyLevelDisplay, game.difficultyLevel);
     
     for (let i=0; i<game.codeMaker.length; i++) {
         const color = createDiv();
@@ -288,7 +285,7 @@ function onClickCodePeg(color) {
     }
 }
 
-function decode() {
+function breakCode() {
     //checking if all pegs are filled
     let allPegsFilled = true;
     for (let i=0; i<currentRowCodePegs.length; i++) {
@@ -341,6 +338,15 @@ function toggleSound() {
         backgroundMusic.play();
         soundImg.src = "images/unmute.png";
     }
+}
+
+function onClickHtpButton() {
+    displayBlock(howToPlay);
+    viewById("htp-body").scrollTop = 0;
+}
+
+function closeHtp() {
+    displayNone(howToPlay);
 }
 
 function onClickQuitButton() {
@@ -416,6 +422,8 @@ function closeDialog() {
 
 function resetGameScreen() {
     displayBlock(codeMakerPaletteOverlay);
+    
+    updateContentText(difficultyLevelDisplay, "");
     
     for (let i=0; i<codeMakerCodePegs.length; i++) {
         codeMakerCodePegs[i].remove();
