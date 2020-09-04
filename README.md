@@ -20,11 +20,11 @@ Things done
 - main overlay to display game not supported message for specific screen size
 - change the decode button name to Break
 - modify pegcolorholder to make it identifiable
+- add review section after the game is over
 
---- remove the outer div in menu screen ---
+
 
 Things to do
 - add images as backgrounds in color palettes
-- add review section after the game is over
 - add animation
 - add images in how to play section
