@@ -21,10 +21,11 @@ Things done
 - change the decode button name to Break
 - modify pegcolorholder to make it identifiable
 - add review section after the game is over
+- add images as backgrounds in color palettes
+- replaced music with a new one
 
 
 
 Things to do
-- add images as backgrounds in color palettes
 - add animation
 - add images in how to play section
