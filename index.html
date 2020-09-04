@@ -92,12 +92,14 @@
                 </div>
                 <p id="dialog-body"></p>
                 <div id="dialog-buttons">
+                    <button id="dialog-review-btn" onclick="reviewGame()">Review</button>
                     <button id="dialog-restart-btn" onclick="restartGame()"></button>
                     <button id="dialog-quit-btn" onclick="quitGame()"></button>
                 </div>
             </div>
         </div>
         
+        <!-- HOW TO PLAY SCREEN -->
         <div id="how-to-play">
             <div id="htp-header">
                 <img id="htp-close-btn" onclick="closeHtp()" src="images/close.png">
@@ -137,6 +139,7 @@
             </div>
         </div>
         
+        <!-- GAME NOT SUPPORTED SCREEN -->
         <div id="not-supported-div">
             <p>This game is not supported in the current screen size. Please try resizing the browser</p>
         </div>

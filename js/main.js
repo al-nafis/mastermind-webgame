@@ -1,17 +1,10 @@
-let welcomeMenu, mainMenu, newGameMenu, optionsMenu, 
-    soundOnBtn, soundOffBtn, menuScreen, 
-    gameScreen, dialogBox, game, codeMakerPalette, 
-    codeMakerPaletteOverlay, howToPlay, difficultyLevelDisplay,
-    soundImg, guesses, dialogHeader, 
-    dialogTitle, dialogCloseBtn, dialogBody, 
-    dialogButtons, dialogRestartBtn, dialogQuitBtn;
+let welcomeMenu, mainMenu, newGameMenu, optionsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, dialogBox, game, codeMakerPalette, codeMakerPaletteOverlay, howToPlay, difficultyLevelDisplay,soundImg, guesses, dialogHeader, dialogTitle, dialogCloseBtn, dialogBody, dialogButtons, dialogRestartBtn, dialogQuitBtn, dialogReviewBtn, textColor;
 
 let codeMakerCodePegs = [];
 let guessCodeRows = [];
 let currentRowCodePegs = [];
 let currentRowKeyPegsHolder = [];
 let emptyPegColor = "rgba(0, 0, 0, 0)";
-let textColor = "";
 
 let musicStatus = true;
 const backgroundMusic = new Audio("sounds/original/Dreaming.ogg");
@@ -105,6 +98,7 @@ window.onload = function() {
     dialogButtons = viewById("dialog-buttons");
     dialogRestartBtn = viewById("dialog-restart-btn");
     dialogQuitBtn = viewById("dialog-quit-btn");
+    dialogReviewBtn = viewById("dialog-review-btn");
     
     displayNone(mainMenu);
     displayNone(newGameMenu);
@@ -120,7 +114,7 @@ window.onload = function() {
     
     setTimeout(function() {
         displayFlex(document.getElementsByTagName("main")[0]);
-    }, 1000)
+    }, 1000);
 }
 
 window.onresize = function() {
@@ -378,6 +372,7 @@ function showDialog(dialogCase) {
             updateContentText(dialogRestartBtn, "Yes");
             displayBlock(dialogHeader);
             displayNone(dialogQuitBtn);
+            displayNone(dialogReviewBtn);
             displayBlock(dialogRestartBtn);
             displayFlex(dialogButtons);
             break;
@@ -386,6 +381,7 @@ function showDialog(dialogCase) {
             updateContentText(dialogQuitBtn, "Yes");
             displayBlock(dialogHeader);
             displayBlock(dialogQuitBtn);
+            displayNone(dialogReviewBtn);
             displayNone(dialogRestartBtn);
             displayFlex(dialogButtons);
             break;
@@ -397,9 +393,13 @@ function showDialog(dialogCase) {
             displayNone(dialogCloseBtn);
             displayBlock(dialogHeader);
             displayBlock(dialogRestartBtn);
+            displayBlock(dialogReviewBtn);
             displayBlock(dialogQuitBtn);
             displayFlex(dialogButtons);
             break;
+        case DialogCases.PEGS_FILLED:
+        case DialogCases.PEG_NOT_FILLED:
+        case DialogCases.DUPLICATES:
         default:
             setTimeout(function() {
                 closeDialog()
@@ -416,8 +416,26 @@ function closeDialog() {
     displayBlock(dialogCloseBtn);
     displayNone(dialogHeader);
     displayNone(dialogRestartBtn);
+    displayNone(dialogReviewBtn);
     displayNone(dialogQuitBtn);
     displayNone(dialogButtons);
+}
+
+function disablePaletteAndButtons(isDisabled) {
+    let clickEnabledValue;
+    if (isDisabled) {
+        clickEnabledValue = "none";
+    } else {
+        clickEnabledValue = "auto";
+    }
+    viewById("color-red").style.pointerEvents = clickEnabledValue;
+    viewById("color-blue").style.pointerEvents = clickEnabledValue;
+    viewById("color-green").style.pointerEvents = clickEnabledValue;
+    viewById("color-yellow").style.pointerEvents = clickEnabledValue;
+    viewById("color-white").style.pointerEvents = clickEnabledValue;
+    viewById("color-black").style.pointerEvents = clickEnabledValue;
+    viewById("break-btn").disabled = isDisabled;
+    viewById("clear-btn").disabled = isDisabled;
 }
 
 function resetGameScreen() {
@@ -435,8 +453,13 @@ function resetGameScreen() {
     
 }
 
+function reviewGame() {
+    closeDialog();
+    disablePaletteAndButtons(true);
+}
+
 function restartGame() {
-    console.log("restart game");
+    disablePaletteAndButtons(false);
     resetGameScreen();
     const difficultyLevel = game.difficultyLevel;
     game = new Game(difficultyLevel);
@@ -445,7 +468,7 @@ function restartGame() {
 }
 
 function quitGame() {
-    console.log("quit game");
+    disablePaletteAndButtons(false);
     resetGameScreen();
     closeDialog();
     displayBlock(menuScreen);

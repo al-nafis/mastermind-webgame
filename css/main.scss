@@ -48,6 +48,14 @@ $standardScreenWidth: 'min-width: 420px';
     justify-content: center;
 }
 
+@mixin positionAbsoluteCoverAll() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 @font-face {
    font-family: Aclonica;
    src: url('../fonts/Aclonica.ttf');
@@ -211,12 +219,8 @@ main {
     display: flex;
     justify-content: center;
     #code-maker-palette-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
+        @include positionAbsoluteCoverAll();
         z-index: 100;
-        height: 100%;
-        width: 100%;
         background: red; //update color
     }
     .code-maker-color-peg {
@@ -258,7 +262,7 @@ main {
             display: flex;
             justify-content: center;
             height:15vw;
-            margin: 7px 3px;
+            margin: 20px 3px;
             .attempt-number {
                 height: 100%;
                 width: 8%;
@@ -444,12 +448,8 @@ main {
 }
 
 #dialog-box {
-    position: absolute;
     z-index: 500;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @include positionAbsoluteCoverAll();
     @include centerize();
     #dialog-container {
         width: 70%;
@@ -489,9 +489,9 @@ main {
                 display: none;
                 font-family: 'Special Elite', cursive;
                 display: block;
-                font-size: .8em;
+                font-size: 4vw;
                 color: $textColor;
-                width: 50%;
+                width: 33%;
                 padding: 12px 0 5px 0;
                 margin: 5px;
                 border-color: $textColor;
@@ -504,6 +504,12 @@ main {
                 &:active {
                     background: #ffffff05;
                 }
+                @media ($standardScreenWidth) and ($standardScreenHeight) {
+                    font-size: .65em;
+                }
+                @media ($standardScreenWidth) {
+                    font-size: .65em;
+                }
             }
         }
     }
@@ -511,11 +517,7 @@ main {
 
 #how-to-play {
     display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+    @include positionAbsoluteCoverAll();
     background: black;
     z-index: 500;
     #htp-header {
@@ -565,11 +567,7 @@ main {
 
 #not-supported-div {
     display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
+    @include positionAbsoluteCoverAll();
     background: black;
     font-size: .7em;
     padding: 20px;
