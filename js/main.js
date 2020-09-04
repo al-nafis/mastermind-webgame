@@ -7,7 +7,7 @@ let currentRowKeyPegsHolder = [];
 let emptyPegColor = "rgba(0, 0, 0, 0)";
 
 let musicStatus = true;
-const backgroundMusic = new Audio("sounds/original/Dreaming.ogg");
+const backgroundMusic = new Audio("sounds/sound.ogg");
 
 const textColorDisabled = "#525252";
 

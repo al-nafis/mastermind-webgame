@@ -24,7 +24,7 @@ $standardScreenWidth: 'min-width: 420px';
 		-o-size: $size;
 		size: $size;
 	};
-	@media only screen and (min-width: 576px){
+	@media ($standardScreenWidth){
         background:{
             -webkit-attachment: $attachment;
             -moz-attachment: $attachment;
@@ -107,7 +107,7 @@ html, body {
 }
 
 main {
-    @include steady-background("../images/main_menu.gif", $attachment: "initial");
+    @include steady-background("../images/background.gif", $attachment: initial);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -212,8 +212,7 @@ main {
 
 #code-maker-palette {
     position: relative;
-    margin: 5px;
-    border-radius: $border-radius;
+    margin: 5px 0;
     background: #cccccc20;
     height: 16vw;
     display: flex;
@@ -221,7 +220,9 @@ main {
     #code-maker-palette-overlay {
         @include positionAbsoluteCoverAll();
         z-index: 100;
-        background: red; //update color
+        border-top: 1px solid $codeHolderBackgroundColor;
+        border-bottom: 1px solid $codeHolderBackgroundColor;
+        @include steady-background("../images/heartbeat.gif", $attachment: initial, $vertical_position: initial, $horizontal_position: initial, $size: 100% 100%);
     }
     .code-maker-color-peg {
         height: 13vw;
@@ -250,7 +251,6 @@ main {
 .bottom-fixed {
     width: 100%;
     position: absolute;
-    padding: 0 5px;
     bottom: 0;
     
     #guesses {
@@ -369,7 +369,8 @@ main {
     #color-palette {
         display: flex;
         justify-content: center;
-        margin: 10px 0;
+        padding: 10px 0;
+        @include steady-background("../images/palette.jpg", $attachment: initial, $vertical_position: initial, $horizontal_position: initial, $size: 100% 100%);
         .code-peg-holder {
             height: 13vw;
             width: 13vw;
@@ -432,7 +433,7 @@ main {
             color: $textColor;
             width: 50%;
             padding: 12px 0 5px 0;
-            margin: 5px;
+            margin: 0 5px 5px 5px;
             border-color: $textColor;
             border-radius: $border-radius;
             background: #00000000;
