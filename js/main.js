@@ -1,75 +1,3 @@
-let welcomeMenu, mainMenu, newGameMenu, optionsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, dialogBox, game, codeMakerPalette, codeMakerPaletteOverlay, howToPlay, difficultyLevelDisplay,soundImg, guesses, dialogHeader, dialogTitle, dialogCloseBtn, dialogBody, dialogButtons, dialogRestartBtn, dialogQuitBtn, dialogReviewBtn, textColor;
-
-let codeMakerCodePegs = [];
-let guessCodeRows = [];
-let currentRowCodePegs = [];
-let currentRowKeyPegsHolder = [];
-let emptyPegColor = "rgba(0, 0, 0, 0)";
-
-let musicStatus = true;
-const backgroundMusic = new Audio("sounds/sound.ogg");
-
-const textColorDisabled = "#525252";
-
-const DialogCases = {
-    PEGS_FILLED: "All pegs are filled",
-    PEG_NOT_FILLED: "All pegs must be filled",
-    DUPLICATES: "Duplicates are not allowed in Beginner level",
-    GAME_OVER_WIN: "Congrats! You have decoded the pattern successfully",
-    GAME_OVER_LOSE: "You have failed to decode the pattern",
-    RESTART_GAME: "Are you sure you want to restart the game?",
-    QUIT_GAME: "Are you sure sure you want to quit the game?"
-}
-
-
-// reusable ui methods
-function viewById(id) {
-    return document.getElementById(id);
-}
-
-function createDiv() {
-    return document.createElement("DIV");
-}
-
-function displayNone(view) {
-    view.style.display = "none";
-}
-
-function displayBlock(view) {
-    view.style.display = "block";
-}
-
-function displayFlex(view) {
-    view.style.display = "flex";
-}
-
-function addClass(view, className) {
-    view.classList.add(className);
-}
-
-function updateBackgroundColor(view, color) {
-    view.style.backgroundColor = color;
-}
-
-function updateContentText(view, text) {
-    view.textContent = text;
-}
-
-function updateSoundUiOn() {
-    soundOffBtn.style.color = textColor;
-    soundOffBtn.style.cursor = "pointer";
-    soundOnBtn.style.color = textColorDisabled;
-    soundOnBtn.style.cursor = "default";
-}
-
-function updateSoundUiOff() {
-    soundOnBtn.style.color = textColor;
-    soundOnBtn.style.cursor = "pointer";
-    soundOffBtn.style.color = textColorDisabled;
-    soundOffBtn.style.cursor = "default";
-}
-//reusable ui methods end
-
 window.onload = function() {
     //screens
     welcomeMenu = viewById("welcome-menu");
@@ -78,6 +6,7 @@ window.onload = function() {
     optionsMenu = viewById("options-menu");
     menuScreen = viewById("menu-screen");
     gameScreen = viewById("game-screen");
+    loadingScreen = viewById("loading-screen");
     dialogBox = viewById("dialog-box");
 
     //buttons
@@ -122,20 +51,17 @@ window.onresize = function() {
 }
 
 function play() {
-    displayNone(welcomeMenu);
-    displayBlock(mainMenu);
+    navigate(welcomeMenu, mainMenu, NavigationStyle.FADE);
     backgroundMusic.loop = true;
     backgroundMusic.play();
 }
 
 function newGame() {
-    displayNone(mainMenu);
-    displayBlock(newGameMenu);
+    navigate(mainMenu, newGameMenu, NavigationStyle.SWIPE_LEFT);
 }
 
 function options() {
-    displayNone(mainMenu);
-    displayBlock(optionsMenu);
+    navigate(mainMenu, optionsMenu, NavigationStyle.SWIPE_LEFT);
     if (musicStatus) {
         updateSoundUiOn()
     } else {
@@ -144,9 +70,8 @@ function options() {
 }
 
 function back() {
-    displayNone(newGameMenu);
-    displayNone(optionsMenu);
-    displayBlock(mainMenu);
+    navigate(newGameMenu, mainMenu, NavigationStyle.SWIPE_RIGHT);
+    navigate(optionsMenu, mainMenu, NavigationStyle.SWIPE_RIGHT);
 }
 
 function soundOn() {
@@ -167,9 +92,12 @@ function soundOff() {
 
 function startGame(difficultyLevel) {
     game = new Game(difficultyLevel);
-    back();
-    displayNone(menuScreen);
-    displayBlock(gameScreen);
+    navigate(menuScreen, loadingScreen, NavigationStyle.FADE);
+    setTimeout(function() {
+        navigate(loadingScreen, gameScreen, NavigationStyle.SWIPE_UP);
+        back();
+    }, loadingDuration);
+    
     setupGameScreen();
 }
 
@@ -335,12 +263,12 @@ function toggleSound() {
 }
 
 function onClickHtpButton() {
-    displayBlock(howToPlay);
+    animate(howToPlay, AnimationStyle.FADE_IN);
     viewById("htp-body").scrollTop = 0;
 }
 
 function closeHtp() {
-    displayNone(howToPlay);
+    animate(howToPlay, AnimationStyle.FADE_OUT);
 }
 
 function onClickQuitButton() {
@@ -357,53 +285,6 @@ function adjustGuessesHeight() {
         guesses.style.maxHeight =(wind - 283) + "px";
     } else {
         guesses.style.maxHeight ="465px";
-    }
-}
-
-function showDialog(dialogCase) {
-    const temporaryDialogTime = 1500;
-    
-    updateContentText(dialogBody, dialogCase);
-    displayFlex(dialogBox);
-    
-    switch (dialogCase) {
-        case DialogCases.RESTART_GAME:
-            updateContentText(dialogTitle, "Restart");
-            updateContentText(dialogRestartBtn, "Yes");
-            displayBlock(dialogHeader);
-            displayNone(dialogQuitBtn);
-            displayNone(dialogReviewBtn);
-            displayBlock(dialogRestartBtn);
-            displayFlex(dialogButtons);
-            break;
-        case DialogCases.QUIT_GAME:
-            updateContentText(dialogTitle, "Quit");
-            updateContentText(dialogQuitBtn, "Yes");
-            displayBlock(dialogHeader);
-            displayBlock(dialogQuitBtn);
-            displayNone(dialogReviewBtn);
-            displayNone(dialogRestartBtn);
-            displayFlex(dialogButtons);
-            break;
-        case DialogCases.GAME_OVER_WIN:
-        case DialogCases.GAME_OVER_LOSE:
-            updateContentText(dialogTitle, "Game Over");
-            updateContentText(dialogQuitBtn, "Menu");
-            updateContentText(dialogRestartBtn, "Restart");
-            displayNone(dialogCloseBtn);
-            displayBlock(dialogHeader);
-            displayBlock(dialogRestartBtn);
-            displayBlock(dialogReviewBtn);
-            displayBlock(dialogQuitBtn);
-            displayFlex(dialogButtons);
-            break;
-        case DialogCases.PEGS_FILLED:
-        case DialogCases.PEG_NOT_FILLED:
-        case DialogCases.DUPLICATES:
-        default:
-            setTimeout(function() {
-                closeDialog()
-            }, temporaryDialogTime);
     }
 }
 
@@ -471,6 +352,8 @@ function quitGame() {
     disablePaletteAndButtons(false);
     resetGameScreen();
     closeDialog();
-    displayBlock(menuScreen);
-    displayNone(gameScreen);
+    navigate(gameScreen, loadingScreen, NavigationStyle.FADE);
+    setTimeout(function() {
+        navigate(loadingScreen, menuScreen, NavigationStyle.SWIPE_DOWN);
+    }, loadingDuration);
 }

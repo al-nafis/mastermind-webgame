@@ -1,0 +1,102 @@
+$animationDuration: .3s;
+$animationTimingFunction: linear;
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }  
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }  
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($name) {
+  -webkit-animation: #{$name} $animationDuration $animationTimingFunction;
+  -moz-animation: #{$name} $animationDuration $animationTimingFunction;
+  -ms-animation: #{$name} $animationDuration $animationTimingFunction;
+  -o-animation: #{$name} $animationDuration $animationTimingFunction;
+  animation: #{$name} $animationDuration $animationTimingFunction;      
+}
+
+@mixin setUpAnimationClass($name) {
+    .#{$name} {
+        @include animation($name);
+    }
+}
+
+
+
+
+
+
+@include keyframes(swipeLeftOut) {
+    to { transform: translateX(-100%) }
+}
+@include keyframes(swipeLeftIn) {
+    from { transform: translateX(100%) }
+}
+@include setUpAnimationClass(swipeLeftOut);
+@include setUpAnimationClass(swipeLeftIn);
+
+
+
+
+
+@include keyframes(swipeRightOut) {
+    to { transform: translateX(100%) }
+}
+
+@include keyframes(swipeRightIn) {
+    from { transform: translateX(-100%) }
+}
+@include setUpAnimationClass(swipeRightOut);
+@include setUpAnimationClass(swipeRightIn);
+
+
+
+
+
+@include keyframes(fadeOut) {
+    to { opacity: 0 }
+}
+
+@include keyframes(fadeIn) {
+    from { opacity: 0 }
+}
+@include setUpAnimationClass(fadeOut);
+@include setUpAnimationClass(fadeIn);
+
+
+
+
+
+@include keyframes(swipeUpOut) {
+    to { transform: translateY(-100%) }
+}
+@include keyframes(swipeUpIn) {
+    from { transform: translateY(100%) }
+}
+@include setUpAnimationClass(swipeUpOut);
+@include setUpAnimationClass(swipeUpIn);
+
+
+
+
+
+@include keyframes(swipeDownOut) {
+    to { transform: translateY(100%) }
+}
+@include keyframes(swipeDownIn) {
+    from { transform: translateY(-100%) }
+}
+@include setUpAnimationClass(swipeDownOut);
+@include setUpAnimationClass(swipeDownIn);

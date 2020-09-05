@@ -1,3 +1,5 @@
+@import "animation";
+
 $textColor: white;
 $codeHolderBackgroundColor: #525252;
 $border-radius: 3px;
@@ -54,6 +56,12 @@ $standardScreenWidth: 'min-width: 420px';
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+@mixin setUpPaletteColor($color) {
+    #color-#{$color} {
+        background: $color;
+    }
 }
 
 @font-face {
@@ -331,8 +339,8 @@ main {
                         justify-content: center;
                         .key-peg-holder {
                             @include centerize();
-                            width: 6vw;
-                            height: 6vw;
+                            width: 4.5vw;
+                            height: 4.5vw;
                             margin: 1vw;
                             border-radius: $border-radius-round;
                             background: $codeHolderBackgroundColor;
@@ -342,15 +350,15 @@ main {
                                 border-radius: $border-radius-round;
                             }
                             @media ($standardScreenWidth) and ($standardScreenHeight) {
-                                height: 25px;
-                                width: 25px;
-                                margin: 5px;
+                                height: 20px;
+                                width: 20px;
+                                margin: 3px;
                             }
 
                             @media ($standardScreenWidth) {
-                                height: 25px;
-                                width: 25px;
-                                margin: 5px;
+                                height: 20px;
+                                width: 20px;
+                                margin: 3px;
                             }
                         }
                     }
@@ -387,30 +395,13 @@ main {
                     cursor: pointer;
                 }
             }
-
-            #color-red {
-                background: red;
-            }
-
-            #color-blue {
-                background: blue;
-            }
-
-            #color-green {
-                background: green;
-            }
-
-            #color-yellow {
-                background: yellow;
-            }
-
-            #color-white {
-                background: white;
-            }
-
-            #color-black {
-                background: black;
-            }
+            
+            @include setUpPaletteColor(red);
+            @include setUpPaletteColor(blue);
+            @include setUpPaletteColor(green);
+            @include setUpPaletteColor(yellow);
+            @include setUpPaletteColor(white);
+            @include setUpPaletteColor(black);
             
             @media ($standardScreenWidth) and ($standardScreenHeight) {
                 height: 52px;
@@ -569,6 +560,19 @@ main {
                     }
                 }
             }
+        }
+    }
+}
+
+#loading-screen {
+    @include positionAbsoluteCoverAll();
+    background: black;
+    display: none;
+    div {
+        @include positionAbsoluteCoverAll();
+        @include centerize();
+        img {
+            width: 15%;
         }
     }
 }
