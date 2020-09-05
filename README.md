@@ -23,9 +23,11 @@ Things done
 - add review section after the game is over
 - add images as backgrounds in color palettes
 - replaced music with a new one
+- add images in how to play section
+- add animation in menu
 
 
 
 Things to do
-- add animation
-- add images in how to play section
+- add animation in game
+- edge browser support
