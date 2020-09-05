@@ -96,9 +96,8 @@ function startGame(difficultyLevel) {
     setTimeout(function() {
         navigate(loadingScreen, gameScreen, NavigationStyle.SWIPE_UP);
         back();
+        setupGameScreen();
     }, loadingDuration);
-    
-    setupGameScreen();
 }
 
 function setupGameScreen() {
@@ -110,14 +109,20 @@ function setupGameScreen() {
     }
     
     updateContentText(difficultyLevelDisplay, game.difficultyLevel);
+    displayBlock(codeMakerPaletteOverlay);
+    setTimeout(function() {
+        animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_IN);
+        setTimeout(function() {
+            for (let i=0; i<game.codeMaker.length; i++) {
+            const color = createDiv();
+            addClass(color, "code-maker-color-peg");
+            updateBackgroundColor(color, game.codeMaker[i]);
+            codeMakerPalette.appendChild(color);
+            codeMakerCodePegs.push(color);
+        }
+        }, animationDurationSlow);
+    }, animationDuration);
     
-    for (let i=0; i<game.codeMaker.length; i++) {
-        const color = createDiv();
-        addClass(color, "code-maker-color-peg");
-        updateBackgroundColor(color, game.codeMaker[i]);
-        codeMakerPalette.appendChild(color);
-        codeMakerCodePegs.push(color);
-    }
     setupInitialGuessRow();
 }
 
@@ -228,11 +233,18 @@ function breakCode() {
 
         //checking if the game is over
         if (game.isGameOver() && game.userWon) {
-            displayNone(codeMakerPaletteOverlay);
-            showDialog(DialogCases.GAME_OVER_WIN);
+            animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_OUT);
+            setTimeout(function() {
+                displayNone(codeMakerPaletteOverlay);
+                showDialog(DialogCases.GAME_OVER_WIN);
+            }, animationDurationSlow);
+            disablePaletteAndButtons(true);
         } else if (game.isGameOver() && !game.userWon) {
-            displayNone(codeMakerPaletteOverlay);
-            showDialog(DialogCases.GAME_OVER_LOSE);
+            setTimeout(function() {
+                displayNone(codeMakerPaletteOverlay);
+                showDialog(DialogCases.GAME_OVER_LOSE);
+            }, animationDurationSlow);
+            disablePaletteAndButtons(true);
         } else {
             game.attempt++;
             setupInitialGuessRow();
@@ -289,17 +301,19 @@ function adjustGuessesHeight() {
 }
 
 function closeDialog() {
-    updateContentText(dialogTitle, "");
-    updateContentText(dialogBody, "");
-    updateContentText(dialogQuitBtn, "");
-    updateContentText(dialogRestartBtn, "");
-    displayNone(dialogBox);
-    displayBlock(dialogCloseBtn);
-    displayNone(dialogHeader);
-    displayNone(dialogRestartBtn);
-    displayNone(dialogReviewBtn);
-    displayNone(dialogQuitBtn);
-    displayNone(dialogButtons);
+    animate(dialogBox, AnimationStyle.FADE_OUT);
+    setTimeout(function() {
+        updateContentText(dialogTitle, "");
+        updateContentText(dialogBody, "");
+        updateContentText(dialogQuitBtn, "");
+        updateContentText(dialogRestartBtn, "");
+        displayBlock(dialogCloseBtn);
+        displayNone(dialogHeader);
+        displayNone(dialogRestartBtn);
+        displayNone(dialogReviewBtn);
+        displayNone(dialogQuitBtn);
+        displayNone(dialogButtons);
+    }, animationDuration);
 }
 
 function disablePaletteAndButtons(isDisabled) {
@@ -320,8 +334,6 @@ function disablePaletteAndButtons(isDisabled) {
 }
 
 function resetGameScreen() {
-    displayBlock(codeMakerPaletteOverlay);
-    
     updateContentText(difficultyLevelDisplay, "");
     
     for (let i=0; i<codeMakerCodePegs.length; i++) {
@@ -342,10 +354,14 @@ function reviewGame() {
 function restartGame() {
     disablePaletteAndButtons(false);
     resetGameScreen();
-    const difficultyLevel = game.difficultyLevel;
-    game = new Game(difficultyLevel);
-    setupGameScreen();
     closeDialog();
+    navigate(gameScreen, loadingScreen, NavigationStyle.FADE);
+    setTimeout(function() {
+        navigate(loadingScreen, gameScreen, NavigationStyle.FADE);
+        const difficultyLevel = game.difficultyLevel;
+        game = new Game(difficultyLevel);
+        setupGameScreen()
+    }, loadingDuration);;
 }
 
 function quitGame() {

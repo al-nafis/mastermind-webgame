@@ -11,7 +11,9 @@ const backgroundMusic = new Audio("sounds/sound.ogg");
 
 const textColorDisabled = "#525252";
 const animationDuration = 300;
+const animationDurationSlow = 1000;
 const loadingDuration = 2000;
+const temporaryDialogDuration = 1500;
 
 const DialogCases = {
     PEGS_FILLED: "All pegs are filled",
@@ -33,7 +35,10 @@ const NavigationStyle = {
 
 const AnimationStyle = {
     FADE_IN: "fadeIn",
-    FADE_OUT: "fadeOut"
+    FADE_IN_FLEX: "fadeInFlex",
+    FADE_OUT: "fadeOut",
+    PALETTE_SLIDE_IN: "paletteSlideIn",
+    PALETTE_SLIDE_OUT: "paletteSlideOut",
 }
 
 
@@ -80,13 +85,26 @@ function removeClass(view, className) {
 
 function animate(view, animationStyle) {
     let animationClassName;
+    let animDuration = animationDuration;
     switch (animationStyle) {
         case AnimationStyle.FADE_IN:
             animationClassName = "fadeIn";
             displayBlock(view);
             break;
+        case AnimationStyle.FADE_IN_FLEX:
+            animationClassName = "fadeIn";
+            displayFlex(view);
+            break;
         case AnimationStyle.FADE_OUT:
             animationClassName = "fadeOut";
+            break;
+        case AnimationStyle.PALETTE_SLIDE_IN:
+            animDuration = animationDurationSlow;
+            animationClassName = "paletteSlideIn";
+            break;
+        case AnimationStyle.PALETTE_SLIDE_OUT:
+            animDuration = animationDurationSlow;
+            animationClassName = "paletteSlideOut";
             break;
     }
     
@@ -96,7 +114,7 @@ function animate(view, animationStyle) {
         if (animationStyle == AnimationStyle.FADE_OUT) {
             displayNone(view);
         }
-    }, animationDuration);
+    }, animDuration);
 }
 
 function navigate(navigateFrom, navigateTo, navigationStyle) {
@@ -148,10 +166,8 @@ function updateSoundUiOff() {
 }
 
 function showDialog(dialogCase) {
-    const temporaryDialogTime = 1500;
-    
     updateContentText(dialogBody, dialogCase);
-    displayFlex(dialogBox);
+    animate(dialogBox, AnimationStyle.FADE_IN_FLEX);
     
     switch (dialogCase) {
         case DialogCases.RESTART_GAME:
@@ -190,6 +206,6 @@ function showDialog(dialogCase) {
         default:
             setTimeout(function() {
                 closeDialog()
-            }, temporaryDialogTime);
+            }, temporaryDialogDuration);
     }
 }
