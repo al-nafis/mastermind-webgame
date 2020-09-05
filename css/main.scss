@@ -555,11 +555,18 @@ main {
         p {
             margin: 20px 0;
         }
+        img {
+            width: 100%;
+        }
         table {
             tr {
                 td {
+                    position: relative;
                     vertical-align:top;
                     padding: 10px 0 10px 10px;
+                    img {
+                        width: 40px;
+                    }
                 }
             }
         }
