@@ -25,9 +25,11 @@ Things done
 - replaced music with a new one
 - add images in how to play section
 - add animation in menu
+- add animation in game
 
 
 
 Things to do
-- add animation in game
+- add animation in palette and feedback
+- optimize settimeout usage
 - edge browser support

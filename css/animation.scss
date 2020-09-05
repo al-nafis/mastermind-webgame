@@ -1,4 +1,5 @@
 $animationDuration: .3s;
+$animationDurationSlow: 1s;
 $animationTimingFunction: linear;
 
 @mixin keyframes($animation-name) {
@@ -19,17 +20,17 @@ $animationTimingFunction: linear;
   }
 }
 
-@mixin animation($name) {
-  -webkit-animation: #{$name} $animationDuration $animationTimingFunction;
-  -moz-animation: #{$name} $animationDuration $animationTimingFunction;
-  -ms-animation: #{$name} $animationDuration $animationTimingFunction;
-  -o-animation: #{$name} $animationDuration $animationTimingFunction;
-  animation: #{$name} $animationDuration $animationTimingFunction;      
+@mixin animation($name, $duration) {
+  -webkit-animation: #{$name} $duration $animationTimingFunction;
+  -moz-animation: #{$name} $duration $animationTimingFunction;
+  -ms-animation: #{$name} $duration $animationTimingFunction;
+  -o-animation: #{$name} $duration $animationTimingFunction;
+  animation: #{$name} $duration $animationTimingFunction;      
 }
 
-@mixin setUpAnimationClass($name) {
+@mixin setUpAnimationClass($name, $duration: $animationDuration) {
     .#{$name} {
-        @include animation($name);
+        @include animation($name, $duration);
     }
 }
 
@@ -100,3 +101,17 @@ $animationTimingFunction: linear;
 }
 @include setUpAnimationClass(swipeDownOut);
 @include setUpAnimationClass(swipeDownIn);
+
+
+
+
+
+@include keyframes(paletteSlideOut) {
+    to { transform: translateY(-100%) }
+}
+
+@include keyframes(paletteSlideIn) {
+    from { transform: translateY(-100%) }
+}
+@include setUpAnimationClass(paletteSlideOut, $animationDurationSlow);
+@include setUpAnimationClass(paletteSlideIn, $animationDurationSlow);
