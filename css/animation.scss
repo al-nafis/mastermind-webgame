@@ -80,36 +80,9 @@ $animationTimingFunction: linear;
 
 
 
-@include keyframes(swipeUpOut) {
-    to { transform: translateY(-100%) }
-}
-@include keyframes(swipeUpIn) {
-    from { transform: translateY(100%) }
-}
-@include setUpAnimationClass(swipeUpOut);
-@include setUpAnimationClass(swipeUpIn);
-
-
-
-
-
-@include keyframes(swipeDownOut) {
-    to { transform: translateY(100%) }
-}
-@include keyframes(swipeDownIn) {
-    from { transform: translateY(-100%) }
-}
-@include setUpAnimationClass(swipeDownOut);
-@include setUpAnimationClass(swipeDownIn);
-
-
-
-
-
 @include keyframes(paletteSlideOut) {
     to { transform: translateY(-100%) }
 }
-
 @include keyframes(paletteSlideIn) {
     from { transform: translateY(-100%) }
 }

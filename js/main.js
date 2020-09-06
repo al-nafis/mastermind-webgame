@@ -94,7 +94,7 @@ function startGame(difficultyLevel) {
     game = new Game(difficultyLevel);
     navigate(menuScreen, loadingScreen, NavigationStyle.FADE);
     setTimeout(function() {
-        navigate(loadingScreen, gameScreen, NavigationStyle.SWIPE_UP);
+        navigate(loadingScreen, gameScreen, NavigationStyle.FADE);
         back();
         setupGameScreen();
     }, loadingDuration);
@@ -240,6 +240,7 @@ function breakCode() {
             }, animationDurationSlow);
             disablePaletteAndButtons(true);
         } else if (game.isGameOver() && !game.userWon) {
+            animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_OUT);
             setTimeout(function() {
                 displayNone(codeMakerPaletteOverlay);
                 showDialog(DialogCases.GAME_OVER_LOSE);
@@ -370,6 +371,6 @@ function quitGame() {
     closeDialog();
     navigate(gameScreen, loadingScreen, NavigationStyle.FADE);
     setTimeout(function() {
-        navigate(loadingScreen, menuScreen, NavigationStyle.SWIPE_DOWN);
+        navigate(loadingScreen, menuScreen, NavigationStyle.FADE);
     }, loadingDuration);
 }

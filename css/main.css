@@ -22,22 +22,6 @@
 
 .fadeIn { -webkit-animation: fadeIn 0.3s linear; animation: fadeIn 0.3s linear; }
 
-@-webkit-keyframes swipeUpOut { to { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
-@keyframes swipeUpOut { to { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
-@-webkit-keyframes swipeUpIn { from { -webkit-transform: translateY(100%); transform: translateY(100%); } }
-@keyframes swipeUpIn { from { -webkit-transform: translateY(100%); transform: translateY(100%); } }
-.swipeUpOut { -webkit-animation: swipeUpOut 0.3s linear; animation: swipeUpOut 0.3s linear; }
-
-.swipeUpIn { -webkit-animation: swipeUpIn 0.3s linear; animation: swipeUpIn 0.3s linear; }
-
-@-webkit-keyframes swipeDownOut { to { -webkit-transform: translateY(100%); transform: translateY(100%); } }
-@keyframes swipeDownOut { to { -webkit-transform: translateY(100%); transform: translateY(100%); } }
-@-webkit-keyframes swipeDownIn { from { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
-@keyframes swipeDownIn { from { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
-.swipeDownOut { -webkit-animation: swipeDownOut 0.3s linear; animation: swipeDownOut 0.3s linear; }
-
-.swipeDownIn { -webkit-animation: swipeDownIn 0.3s linear; animation: swipeDownIn 0.3s linear; }
-
 @-webkit-keyframes paletteSlideOut { to { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
 @keyframes paletteSlideOut { to { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
 @-webkit-keyframes paletteSlideIn { from { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }

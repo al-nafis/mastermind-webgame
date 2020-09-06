@@ -128,14 +128,6 @@ function navigate(navigateFrom, navigateTo, navigationStyle) {
             navigateFromClassName = "swipeRightOut";
             navigateToClassName = "swipeRightIn";
             break;
-        case NavigationStyle.SWIPE_UP:
-            navigateFromClassName = "swipeUpOut";
-            navigateToClassName = "swipeUpIn";
-            break;
-        case NavigationStyle.SWIPE_DOWN:
-            navigateFromClassName = "swipeDownOut";
-            navigateToClassName = "swipeDownIn";
-            break;
         case NavigationStyle.FADE:
             navigateFromClassName = "fadeOut";
             navigateToClassName = "fadeIn";
