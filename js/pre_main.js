@@ -11,7 +11,7 @@ const backgroundMusic = new Audio("sounds/sound.ogg");
 
 const textColorDisabled = "#525252";
 const animationDuration = 300;
-const animationDurationSlow = 1000;
+const animationDurationSlow = 1500;
 const loadingDuration = 2000;
 const temporaryDialogDuration = 1500;
 
@@ -83,6 +83,16 @@ function removeClass(view, className) {
     view.classList.remove(className);
 }
 
+function getRandomColor() {
+    return Colors[Math.floor(Math.random() * Colors.length)];
+}
+
+function animateCodemakerPalette() {
+    for (let i=0; i<game.codeMaker.length; i++) {
+        updateBackgroundColor(codeMakerCodePegs[i], getRandomColor());
+    }
+}
+
 function animate(view, animationStyle) {
     let animationClassName;
     let animDuration = animationDuration;
@@ -97,23 +107,29 @@ function animate(view, animationStyle) {
             break;
         case AnimationStyle.FADE_OUT:
             animationClassName = "fadeOut";
+            setTimeout(function() {
+                displayNone(view);
+            }, animDuration);
             break;
         case AnimationStyle.PALETTE_SLIDE_IN:
             animDuration = animationDurationSlow;
             animationClassName = "paletteSlideIn";
+            setTimeout(function() {
+                view.style.transform = "translateX(0%)";
+            }, animDuration);
             break;
         case AnimationStyle.PALETTE_SLIDE_OUT:
             animDuration = animationDurationSlow;
             animationClassName = "paletteSlideOut";
+            setTimeout(function() {
+                view.style.transform = "translateX(100%)";
+            }, animDuration);
             break;
     }
     
     addClass(view, animationClassName);
     setTimeout(function() {
         removeClass(view, animationClassName);
-        if (animationStyle == AnimationStyle.FADE_OUT) {
-            displayNone(view);
-        }
     }, animDuration);
 }
 

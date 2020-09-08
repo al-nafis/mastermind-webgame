@@ -31,5 +31,4 @@ Things done
 
 Things to do
 - add animation in palette and feedback
-- optimize settimeout usage
 - edge browser support

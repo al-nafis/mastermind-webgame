@@ -110,16 +110,23 @@ function setupGameScreen() {
     
     updateContentText(difficultyLevelDisplay, game.difficultyLevel);
     displayBlock(codeMakerPaletteOverlay);
+    
+    //setup the codemaker's pattern
     setTimeout(function() {
-        animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_IN);
-        setTimeout(function() {
-            for (let i=0; i<game.codeMaker.length; i++) {
+        for (let i=0; i<game.codeMaker.length; i++) {
             const color = createDiv();
             addClass(color, "code-maker-color-peg");
-            updateBackgroundColor(color, game.codeMaker[i]);
+            updateBackgroundColor(color, getRandomColor());
             codeMakerPalette.appendChild(color);
             codeMakerCodePegs.push(color);
         }
+        const intervalSetter = setInterval(animateCodemakerPalette, animationDurationSlow / 5);   
+        animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_IN);
+        setTimeout(function() {
+            clearInterval(intervalSetter);
+            for (let i=0; i<game.codeMaker.length; i++) {
+                updateBackgroundColor(codeMakerCodePegs[i], game.codeMaker[i]);
+            }
         }, animationDurationSlow);
     }, animationDuration);
     
@@ -336,15 +343,17 @@ function disablePaletteAndButtons(isDisabled) {
 
 function resetGameScreen() {
     updateContentText(difficultyLevelDisplay, "");
+    codeMakerPaletteOverlay.style.transform = "translateX(-100%)";
     
     for (let i=0; i<codeMakerCodePegs.length; i++) {
         codeMakerCodePegs[i].remove();
     }
+    codeMakerCodePegs = [];
     
     for (let i=0; i<guessCodeRows.length; i++) {
         guessCodeRows[i].remove();
     };
-    
+    guessCodeRows = [];
 }
 
 function reviewGame() {

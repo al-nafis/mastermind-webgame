@@ -227,6 +227,7 @@ main {
     justify-content: center;
     #code-maker-palette-overlay {
         @include positionAbsoluteCoverAll();
+        transform: translateX(-100%);
         z-index: 100;
         border-top: 1px solid $codeHolderBackgroundColor;
         border-bottom: 1px solid $codeHolderBackgroundColor;

@@ -1,5 +1,5 @@
 $animationDuration: .3s;
-$animationDurationSlow: 1s;
+$animationDurationSlow: 1.5s;
 $animationTimingFunction: linear;
 
 @mixin keyframes($animation-name) {
@@ -80,11 +80,11 @@ $animationTimingFunction: linear;
 
 
 
-@include keyframes(paletteSlideOut) {
-    to { transform: translateY(-100%) }
-}
 @include keyframes(paletteSlideIn) {
-    from { transform: translateY(-100%) }
+    to { transform: translateX(0%) }
 }
-@include setUpAnimationClass(paletteSlideOut, $animationDurationSlow);
+@include keyframes(paletteSlideOut) {
+    to { transform: translateX(100%) }
+}
 @include setUpAnimationClass(paletteSlideIn, $animationDurationSlow);
+@include setUpAnimationClass(paletteSlideOut, $animationDurationSlow);

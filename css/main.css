@@ -22,13 +22,13 @@
 
 .fadeIn { -webkit-animation: fadeIn 0.3s linear; animation: fadeIn 0.3s linear; }
 
-@-webkit-keyframes paletteSlideOut { to { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
-@keyframes paletteSlideOut { to { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
-@-webkit-keyframes paletteSlideIn { from { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
-@keyframes paletteSlideIn { from { -webkit-transform: translateY(-100%); transform: translateY(-100%); } }
-.paletteSlideOut { -webkit-animation: paletteSlideOut 1s linear; animation: paletteSlideOut 1s linear; }
+@-webkit-keyframes paletteSlideIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
+@keyframes paletteSlideIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
+@-webkit-keyframes paletteSlideOut { to { -webkit-transform: translateX(100%); transform: translateX(100%); } }
+@keyframes paletteSlideOut { to { -webkit-transform: translateX(100%); transform: translateX(100%); } }
+.paletteSlideIn { -webkit-animation: paletteSlideIn 1.5s linear; animation: paletteSlideIn 1.5s linear; }
 
-.paletteSlideIn { -webkit-animation: paletteSlideIn 1s linear; animation: paletteSlideIn 1s linear; }
+.paletteSlideOut { -webkit-animation: paletteSlideOut 1.5s linear; animation: paletteSlideOut 1.5s linear; }
 
 @font-face { font-family: Aclonica; src: url("../fonts/Aclonica.ttf"); }
 @font-face { font-family: Special Elite; src: url("../fonts/SpecialElite.ttf"); }
@@ -78,7 +78,7 @@ main { background-image: url("../images/background.gif"); background-repeat: no-
 #toolbar #game-sound-btn { float: right; margin-right: 25px; }
 
 #code-maker-palette { position: relative; margin: 5px 0; background: #cccccc20; height: 16vw; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
-#code-maker-palette #code-maker-palette-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; border-top: 1px solid #525252; border-bottom: 1px solid #525252; background-image: url("../images/heartbeat.gif"); background-repeat: no-repeat; background-position: initial initial; background--webkit-size: 100% 100%; background--moz-size: 100% 100%; background--o-size: 100% 100%; background-size: 100% 100%; }
+#code-maker-palette #code-maker-palette-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; -webkit-transform: translateX(-100%); transform: translateX(-100%); z-index: 100; border-top: 1px solid #525252; border-bottom: 1px solid #525252; background-image: url("../images/heartbeat.gif"); background-repeat: no-repeat; background-position: initial initial; background--webkit-size: 100% 100%; background--moz-size: 100% 100%; background--o-size: 100% 100%; background-size: 100% 100%; }
 @media (min-width: 420px) { #code-maker-palette #code-maker-palette-overlay { background--webkit-attachment: initial; background--moz-attachment: initial; background--o-attachment: initial; background-attachment: initial; } }
 #code-maker-palette .code-maker-color-peg { height: 13vw; width: 13vw; margin: 1.5vw 5px; border-radius: 50%; }
 @media (min-width: 420px) and (min-height: 750px) { #code-maker-palette { height: 60px; }
