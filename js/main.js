@@ -28,12 +28,8 @@ window.onload = function() {
     dialogRestartBtn = viewById("dialog-restart-btn");
     dialogQuitBtn = viewById("dialog-quit-btn");
     dialogReviewBtn = viewById("dialog-review-btn");
-    
-    displayNone(mainMenu);
-    displayNone(newGameMenu);
-    displayNone(optionsMenu);
-    displayNone(gameScreen);
-    displayNone(dialogBox);
+
+    displayNoneAll([mainMenu, newGameMenu, optionsMenu, gameScreen, dialogBox]);
     
     textColor = document.getElementsByTagName('body')[0].style.color
     
@@ -316,11 +312,7 @@ function closeDialog() {
         updateContentText(dialogQuitBtn, "");
         updateContentText(dialogRestartBtn, "");
         displayBlock(dialogCloseBtn);
-        displayNone(dialogHeader);
-        displayNone(dialogRestartBtn);
-        displayNone(dialogReviewBtn);
-        displayNone(dialogQuitBtn);
-        displayNone(dialogButtons);
+        displayNoneAll([dialogHeader, dialogRestartBtn, dialogReviewBtn, dialogQuitBtn, dialogButtons]);
     }, animationDuration);
 }
 

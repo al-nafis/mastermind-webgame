@@ -55,8 +55,20 @@ function displayNone(view) {
     view.style.display = "none";
 }
 
+function displayNoneAll(viewArray) {
+    for (let i=0; i<viewArray.length; i++) {
+        viewArray[i].style.display = "none";
+    }
+}
+
 function displayBlock(view) {
     view.style.display = "block";
+}
+
+function displayBlockAll(viewArray) {
+    for (let i=0; i<viewArray.length; i++) {
+        viewArray[i].style.display = "block";
+    }
 }
 
 function displayFlex(view) {
@@ -181,19 +193,15 @@ function showDialog(dialogCase) {
         case DialogCases.RESTART_GAME:
             updateContentText(dialogTitle, "Restart");
             updateContentText(dialogRestartBtn, "Yes");
-            displayBlock(dialogHeader);
-            displayNone(dialogQuitBtn);
-            displayNone(dialogReviewBtn);
-            displayBlock(dialogRestartBtn);
+            displayBlockAll([dialogHeader, dialogRestartBtn]);
+            displayNoneAll([dialogQuitBtn, dialogReviewBtn]);
             displayFlex(dialogButtons);
             break;
         case DialogCases.QUIT_GAME:
             updateContentText(dialogTitle, "Quit");
             updateContentText(dialogQuitBtn, "Yes");
-            displayBlock(dialogHeader);
-            displayBlock(dialogQuitBtn);
-            displayNone(dialogReviewBtn);
-            displayNone(dialogRestartBtn);
+            displayBlockAll([dialogHeader, dialogQuitBtn]);
+            displayNoneAll([dialogRestartBtn, dialogReviewBtn]);
             displayFlex(dialogButtons);
             break;
         case DialogCases.GAME_OVER_WIN:
@@ -202,10 +210,7 @@ function showDialog(dialogCase) {
             updateContentText(dialogQuitBtn, "Menu");
             updateContentText(dialogRestartBtn, "Restart");
             displayNone(dialogCloseBtn);
-            displayBlock(dialogHeader);
-            displayBlock(dialogRestartBtn);
-            displayBlock(dialogReviewBtn);
-            displayBlock(dialogQuitBtn);
+            displayBlockAll([dialogHeader, dialogRestartBtn, dialogReviewBtn, dialogQuitBtn]);
             displayFlex(dialogButtons);
             break;
         case DialogCases.PEGS_FILLED:
