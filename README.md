@@ -32,3 +32,4 @@ Things done
 Things to do
 - add animation in palette and feedback
 - edge browser support
+- small laptop screen support

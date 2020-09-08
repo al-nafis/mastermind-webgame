@@ -30,6 +30,10 @@
 
 .paletteSlideOut { -webkit-animation: paletteSlideOut 1.5s linear; animation: paletteSlideOut 1.5s linear; }
 
+@-webkit-keyframes rowIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
+@keyframes rowIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
+.rowIn { -webkit-animation: rowIn 1s linear; animation: rowIn 1s linear; }
+
 @font-face { font-family: Aclonica; src: url("../fonts/Aclonica.ttf"); }
 @font-face { font-family: Special Elite; src: url("../fonts/SpecialElite.ttf"); }
 .testing1 { border: 1px solid pink; background-color: blue; }
@@ -89,18 +93,18 @@ main { background-image: url("../images/background.gif"); background-repeat: no-
 .bottom-fixed { width: 100%; position: absolute; bottom: 0; }
 .bottom-fixed #guesses { border-top: 1px solid white; border-bottom: 1px solid white; -ms-overflow-style: none; scrollbar-width: none; overflow-y: scroll; }
 .bottom-fixed #guesses::-webkit-scrollbar { display: none; }
-.bottom-fixed #guesses .row { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; height: 15vw; margin: 20px 3px; }
+.bottom-fixed #guesses .row { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-transform: translateX(100%); transform: translateX(100%); height: 15vw; margin: 20px 3px; }
 .bottom-fixed #guesses .row .attempt-number { height: 100%; width: 8%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 .bottom-fixed #guesses .row .attempt-number div { font-family: 'Aclonica', cursive; font-size: .8rem; }
 .bottom-fixed #guesses .row .guess-palette { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; height: 100%; width: 72%; border-right: 1px solid white; border-left: 1px solid white; }
 .bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs { background: #525252; border-radius: 50%; margin: 0 5px; height: 12vw; width: 12vw; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
-.bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs div { border-radius: 50%; height: 90%; width: 90%; }
+.bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs div { -webkit-transition-duration: 1s; transition-duration: 1s; border-radius: 50%; height: 90%; width: 90%; }
 @media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs { height: 55px; width: 55px; } }
 @media (min-width: 420px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs { height: 55px; width: 55px; } }
 .bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs { background: #525252; border-radius: 50%; margin: 0 5px; height: 8vw; width: 8vw; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs div { -webkit-transition-duration: 1s; transition-duration: 1s; border-radius: 50%; height: 95%; width: 95%; }
 @media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs { height: 35px; width: 35px; } }
 @media (min-width: 420px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs { height: 35px; width: 35px; } }
-.bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs div { border-radius: 50%; height: 95%; width: 95%; }
 .bottom-fixed #guesses .row .feedback-holder { height: 100%; width: 20%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 .bottom-fixed #guesses .row .feedback-holder div div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 .bottom-fixed #guesses .row .feedback-holder div div .key-peg-holder { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 4.5vw; height: 4.5vw; margin: 1vw; border-radius: 50%; background: #525252; }

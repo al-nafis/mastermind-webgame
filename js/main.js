@@ -103,7 +103,7 @@ function setupGameScreen() {
     } else {
         soundImg.src = "images/mute.png";
     }
-    
+    disablePaletteAndButtons(true);
     updateContentText(difficultyLevelDisplay, game.difficultyLevel);
     displayBlock(codeMakerPaletteOverlay);
     
@@ -120,6 +120,7 @@ function setupGameScreen() {
         animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_IN);
         setTimeout(function() {
             clearInterval(intervalSetter);
+            disablePaletteAndButtons(false);
             for (let i=0; i<game.codeMaker.length; i++) {
                 updateBackgroundColor(codeMakerCodePegs[i], game.codeMaker[i]);
             }
@@ -136,6 +137,10 @@ function setupInitialGuessRow() {
     
     //adding a row
     const row = createDiv();
+    addClass(row, "rowIn");
+    setTimeout(function() {
+        row.style.transform = "translateX(0%)";
+    }, animationDurationMedium);
     addClass(row, "row");
     guesses.prepend(row);
     guessCodeRows.push(row);

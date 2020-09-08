@@ -11,6 +11,7 @@ const backgroundMusic = new Audio("sounds/sound.ogg");
 
 const textColorDisabled = "#525252";
 const animationDuration = 300;
+const animationDurationMedium = 1000;
 const animationDurationSlow = 1500;
 const loadingDuration = 2000;
 const temporaryDialogDuration = 1500;

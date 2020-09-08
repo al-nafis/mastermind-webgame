@@ -1,4 +1,5 @@
 $animationDuration: .3s;
+$animationDurationMedium: 1s;
 $animationDurationSlow: 1.5s;
 $animationTimingFunction: linear;
 
@@ -88,3 +89,8 @@ $animationTimingFunction: linear;
 }
 @include setUpAnimationClass(paletteSlideIn, $animationDurationSlow);
 @include setUpAnimationClass(paletteSlideOut, $animationDurationSlow);
+
+@include keyframes(rowIn) {
+    to { transform: translateX(0%) }
+}
+@include setUpAnimationClass(rowIn, $animationDurationMedium);
