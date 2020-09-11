@@ -4,7 +4,7 @@ Welcome to Mastermind!
 
 This webgame is developed with pure JavaScript, SCSS/CSS and HTML. Feel free to take a look at the source.
 
-To play or see the game live, [Click Here](http://mastermind.mnafis.com)!
+To play or see the game live, <a href="http://mastermind.mnafis.com" target="_blank">Click Here</a>!
 
 ## How to Play
 
