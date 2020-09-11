@@ -1,35 +1,29 @@
 # mastermind-webgame
 
-Things done
-- implement Menu screen
-- implement menu navigation
-- implement music
-- implement game screen partials
-- implement code maker's palette
-- implement code breaker's palette
-- implement Guesses Pattern
-- implement user interaction with the palette
-- implement dialog box
-- implement decode button functions
-- implement post game scenarios
-- implement quit game button
-- implement restart game button
-- implement rules/help button
-- replace credits section with how to play
-- fix menu items sizing according to different screen dimension
-- main overlay to display game not supported message for specific screen size
-- change the decode button name to Break
-- modify pegcolorholder to make it identifiable
-- add review section after the game is over
-- add images as backgrounds in color palettes
-- replaced music with a new one
-- add images in how to play section
-- add animation in menu
-- add animation in game
-- add animation in palette and feedback
+Welcome to Mastermind!
+
+This webgame is developed with pure JavaScript, SCSS/CSS and HTML. Feel free to take a look at the source.
+
+To play or see the game live, [Click Here](http://mastermind.mnafis.com)!
+
+# How to Play
+
+The Objective of the game is to break the existing code pattern that is hidden under the heartbeat.
+
+The code is the sequence of different colored pegs. You get a specific number of attempts. For each attempt, you will try to guess the right combination of the code pegs. You will select colors and add them to the current attempt row by clicking or tapping them from the Color Palette
+
+You can also on tap the CLEAR button the to clear the current row before you get a feedback. Once you have filled  the current row with colors, hit the BREAK button.
+
+You will get a feedback on the right side of your guessed pattern. The feedback will be either BLACK or WHITE pegs.
+
+BLACK PEG means one of your guess pegs have the correct color and position
+WHITE PEG means One of your guess pegs have the corrent color but wrong position
+
+Based on the feedback, you will compare previous attempts to each other and use logic to figure out what the right pattern would be.
+
+Good Luck!
 
 
-
-Things to do
+Things to Improve
 - edge browser support
 - small laptop screen support
