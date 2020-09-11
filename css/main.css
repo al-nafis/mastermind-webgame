@@ -26,26 +26,22 @@
 @keyframes paletteSlideIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
 @-webkit-keyframes paletteSlideOut { to { -webkit-transform: translateX(100%); transform: translateX(100%); } }
 @keyframes paletteSlideOut { to { -webkit-transform: translateX(100%); transform: translateX(100%); } }
-.paletteSlideIn { -webkit-animation: paletteSlideIn 1.5s linear; animation: paletteSlideIn 1.5s linear; }
+.paletteSlideIn { -webkit-animation: paletteSlideIn 1s linear; animation: paletteSlideIn 1s linear; }
 
-.paletteSlideOut { -webkit-animation: paletteSlideOut 1.5s linear; animation: paletteSlideOut 1.5s linear; }
+.paletteSlideOut { -webkit-animation: paletteSlideOut 1s linear; animation: paletteSlideOut 1s linear; }
 
 @-webkit-keyframes rowIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
 @keyframes rowIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
 .rowIn { -webkit-animation: rowIn 1s linear; animation: rowIn 1s linear; }
 
+@-webkit-keyframes feedbackSlideOut { from { border-left: 1px solid white; }
+  to { -webkit-transform: translateX(100%); transform: translateX(100%); border-left: 1px solid white; } }
+@keyframes feedbackSlideOut { from { border-left: 1px solid white; }
+  to { -webkit-transform: translateX(100%); transform: translateX(100%); border-left: 1px solid white; } }
+.feedbackSlideOut { -webkit-animation: feedbackSlideOut 1s linear; animation: feedbackSlideOut 1s linear; }
+
 @font-face { font-family: Aclonica; src: url("../fonts/Aclonica.ttf"); }
 @font-face { font-family: Special Elite; src: url("../fonts/SpecialElite.ttf"); }
-.testing1 { border: 1px solid pink; background-color: blue; }
-
-.testing2 { border: 1px solid lightblue; background-color: red; }
-
-.testing3 { border: 1px solid lightgreen; background-color: yellow; }
-
-.display-none { display: none; }
-
-.display-block { display: block; }
-
 .position-absolute { position: absolute; }
 
 .w-100 { width: 100%; }
@@ -91,9 +87,11 @@ main { background-image: url("../images/background.gif"); background-repeat: no-
   #code-maker-palette .code-maker-color-peg { height: 50px; width: 50px; margin: 5px; } }
 
 .bottom-fixed { width: 100%; position: absolute; bottom: 0; }
-.bottom-fixed #guesses { border-top: 1px solid white; border-bottom: 1px solid white; -ms-overflow-style: none; scrollbar-width: none; overflow-y: scroll; }
+.bottom-fixed #guesses { border-bottom: 1px solid #525252; -ms-overflow-style: none; scrollbar-width: none; overflow-y: hidden; }
 .bottom-fixed #guesses::-webkit-scrollbar { display: none; }
 .bottom-fixed #guesses .row { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-transform: translateX(100%); transform: translateX(100%); height: 15vw; margin: 20px 3px; }
+@media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row { height: 60px; } }
+@media (min-width: 420px) { .bottom-fixed #guesses .row { height: 60px; } }
 .bottom-fixed #guesses .row .attempt-number { height: 100%; width: 8%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 .bottom-fixed #guesses .row .attempt-number div { font-family: 'Aclonica', cursive; font-size: .8rem; }
 .bottom-fixed #guesses .row .guess-palette { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; height: 100%; width: 72%; border-right: 1px solid white; border-left: 1px solid white; }
@@ -105,14 +103,14 @@ main { background-image: url("../images/background.gif"); background-repeat: no-
 .bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs div { -webkit-transition-duration: 1s; transition-duration: 1s; border-radius: 50%; height: 95%; width: 95%; }
 @media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs { height: 35px; width: 35px; } }
 @media (min-width: 420px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs { height: 35px; width: 35px; } }
-.bottom-fixed #guesses .row .feedback-holder { height: 100%; width: 20%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
-.bottom-fixed #guesses .row .feedback-holder div div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
-.bottom-fixed #guesses .row .feedback-holder div div .key-peg-holder { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 4.5vw; height: 4.5vw; margin: 1vw; border-radius: 50%; background: #525252; }
-.bottom-fixed #guesses .row .feedback-holder div div .key-peg-holder div { width: 80%; height: 80%; border-radius: 50%; }
-@media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row .feedback-holder div div .key-peg-holder { height: 20px; width: 20px; margin: 3px; } }
-@media (min-width: 420px) { .bottom-fixed #guesses .row .feedback-holder div div .key-peg-holder { height: 20px; width: 20px; margin: 3px; } }
-@media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row { height: 60px; } }
-@media (min-width: 420px) { .bottom-fixed #guesses .row { height: 60px; } }
+.bottom-fixed #guesses .row .feedback-holder { position: relative; height: 100%; width: 20%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.bottom-fixed #guesses .row .feedback-holder .feedback-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url("../images/feedback_overlay.gif"); background-repeat: no-repeat; background-position: center center; background--webkit-size: cover; background--moz-size: cover; background--o-size: cover; background-size: cover; z-index: 100; }
+@media (min-width: 420px) { .bottom-fixed #guesses .row .feedback-holder .feedback-overlay { background--webkit-attachment: fixed; background--moz-attachment: fixed; background--o-attachment: fixed; background-attachment: fixed; } }
+.bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder { opacity: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 4.5vw; height: 4.5vw; margin: 1vw; border-radius: 50%; background: #525252; }
+.bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder div { -webkit-transition-duration: 1s; transition-duration: 1s; width: 80%; height: 80%; border-radius: 50%; }
+@media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder { height: 20px; width: 20px; margin: 3px; } }
+@media (min-width: 420px) { .bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder { height: 20px; width: 20px; margin: 3px; } }
 .bottom-fixed #color-palette { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; padding: 10px 0; background-image: url("../images/palette.jpg"); background-repeat: no-repeat; background-position: initial initial; background--webkit-size: 100% 100%; background--moz-size: 100% 100%; background--o-size: 100% 100%; background-size: 100% 100%; }
 @media (min-width: 420px) { .bottom-fixed #color-palette { background--webkit-attachment: initial; background--moz-attachment: initial; background--o-attachment: initial; background-attachment: initial; } }
 .bottom-fixed #color-palette .code-peg-holder { height: 13vw; width: 13vw; margin: 5px; background: #525252; border-radius: 50%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }

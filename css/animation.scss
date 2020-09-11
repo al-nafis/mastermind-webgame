@@ -1,6 +1,5 @@
 $animationDuration: .3s;
-$animationDurationMedium: 1s;
-$animationDurationSlow: 1.5s;
+$animationDurationSlow: 1s;
 $animationTimingFunction: linear;
 
 @mixin keyframes($animation-name) {
@@ -90,7 +89,24 @@ $animationTimingFunction: linear;
 @include setUpAnimationClass(paletteSlideIn, $animationDurationSlow);
 @include setUpAnimationClass(paletteSlideOut, $animationDurationSlow);
 
+
+
+
+
 @include keyframes(rowIn) {
     to { transform: translateX(0%) }
 }
-@include setUpAnimationClass(rowIn, $animationDurationMedium);
+@include setUpAnimationClass(rowIn, $animationDurationSlow);
+
+
+
+
+
+@include keyframes(feedbackSlideOut) {
+    from { border-left: 1px solid white; }
+    to { 
+        transform: translateX(100%);
+        border-left: 1px solid white;
+    }
+}
+@include setUpAnimationClass(feedbackSlideOut, $animationDurationSlow);

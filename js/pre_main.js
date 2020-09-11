@@ -1,4 +1,4 @@
-let welcomeMenu, mainMenu, newGameMenu, optionsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, loadingScreen, dialogBox, game, codeMakerPalette, codeMakerPaletteOverlay, howToPlay, difficultyLevelDisplay,soundImg, guesses, dialogHeader, dialogTitle, dialogCloseBtn, dialogBody, dialogButtons, dialogRestartBtn, dialogQuitBtn, dialogReviewBtn, textColor;
+let welcomeMenu, mainMenu, newGameMenu, optionsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, loadingScreen, dialogBox, game, codeMakerPalette, codeMakerPaletteOverlay, howToPlay, difficultyLevelDisplay,soundImg, guesses, dialogHeader, dialogTitle, dialogCloseBtn, dialogBody, dialogButtons, dialogRestartBtn, dialogQuitBtn, dialogReviewBtn, textColor, currentRowFeedbackOverlay;
 
 let codeMakerCodePegs = [];
 let guessCodeRows = [];
@@ -11,8 +11,7 @@ const backgroundMusic = new Audio("sounds/sound.ogg");
 
 const textColorDisabled = "#525252";
 const animationDuration = 300;
-const animationDurationMedium = 1000;
-const animationDurationSlow = 1500;
+const animationDurationSlow = 1000;
 const loadingDuration = 2000;
 const temporaryDialogDuration = 1500;
 
@@ -40,6 +39,8 @@ const AnimationStyle = {
     FADE_OUT: "fadeOut",
     PALETTE_SLIDE_IN: "paletteSlideIn",
     PALETTE_SLIDE_OUT: "paletteSlideOut",
+    ROW_IN: "rowIn",
+    FEEDBACK_SLIDE_OUT:"feedbackSlideOut"
 }
 
 
@@ -136,6 +137,21 @@ function animate(view, animationStyle) {
             animationClassName = "paletteSlideOut";
             setTimeout(function() {
                 view.style.transform = "translateX(100%)";
+            }, animDuration);
+            break;
+            
+        case AnimationStyle.ROW_IN:
+            animDuration = animationDurationSlow;
+            animationClassName = "rowIn";
+            setTimeout(function() {
+                view.style.transform = "translateX(0%)";
+            }, animDuration);
+            break;
+        case AnimationStyle.FEEDBACK_SLIDE_OUT:
+            animDuration = animationDurationSlow;
+            animationClassName = "feedbackSlideOut";
+            setTimeout(function() {
+                view.remove();
             }, animDuration);
             break;
     }

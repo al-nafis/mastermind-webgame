@@ -120,27 +120,28 @@ function setupGameScreen() {
         animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_IN);
         setTimeout(function() {
             clearInterval(intervalSetter);
-            disablePaletteAndButtons(false);
             for (let i=0; i<game.codeMaker.length; i++) {
                 updateBackgroundColor(codeMakerCodePegs[i], game.codeMaker[i]);
             }
+            setupInitialGuessRow();
         }, animationDurationSlow);
     }, animationDuration);
-    
-    setupInitialGuessRow();
 }
 
 function setupInitialGuessRow() {
+    disablePaletteAndButtons(true);
     currentRowCodePegs = [];
     currentRowKeyPegsHolder = [];
     game.currentCodeBreakerPattern = [];
     
+    setTimeout(function() {
+        disableRowScrolling(false);
+        disablePaletteAndButtons(false);
+    }, animationDurationSlow);
+    
     //adding a row
     const row = createDiv();
-    addClass(row, "rowIn");
-    setTimeout(function() {
-        row.style.transform = "translateX(0%)";
-    }, animationDurationMedium);
+    animate(row, AnimationStyle.ROW_IN);
     addClass(row, "row");
     guesses.prepend(row);
     guessCodeRows.push(row);
@@ -179,7 +180,12 @@ function setupInitialGuessRow() {
     addClass(feedbackHolder, "feedback-holder");
     row.appendChild(feedbackHolder);
     
+    currentRowFeedbackOverlay = createDiv();
+    addClass(currentRowFeedbackOverlay, "feedback-overlay");
+    feedbackHolder.appendChild(currentRowFeedbackOverlay);
+    
     const feedbackHolderInnerDiv = createDiv();
+    addClass(feedbackHolderInnerDiv, "feedback-holder-inner-div");
     feedbackHolder.appendChild(feedbackHolderInnerDiv);
     
     let eachRowKeyPegs = 2;
@@ -237,27 +243,35 @@ function breakCode() {
             const keyPeg = createDiv();
             updateBackgroundColor(keyPeg, feedback[i]);
             currentRowKeyPegsHolder[i].appendChild(keyPeg);
+            currentRowKeyPegsHolder[i].style.opacity = 1;
         }
+        disableRowScrolling(true);
+        disablePaletteAndButtons(true);
+        animate(currentRowFeedbackOverlay, AnimationStyle.FEEDBACK_SLIDE_OUT);
 
         //checking if the game is over
         if (game.isGameOver() && game.userWon) {
-            animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_OUT);
             setTimeout(function() {
-                displayNone(codeMakerPaletteOverlay);
-                showDialog(DialogCases.GAME_OVER_WIN);
+                animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_OUT);
+                setTimeout(function() {
+                    displayNone(codeMakerPaletteOverlay);
+                    showDialog(DialogCases.GAME_OVER_WIN);
+                }, animationDurationSlow);
             }, animationDurationSlow);
-            disablePaletteAndButtons(true);
         } else if (game.isGameOver() && !game.userWon) {
-            animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_OUT);
-            setTimeout(function() {
-                displayNone(codeMakerPaletteOverlay);
-                showDialog(DialogCases.GAME_OVER_LOSE);
+            setTimeout(function() {    
+                animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_OUT);
+                setTimeout(function() {
+                    displayNone(codeMakerPaletteOverlay);
+                    showDialog(DialogCases.GAME_OVER_LOSE);
+                }, animationDurationSlow);
             }, animationDurationSlow);
-            disablePaletteAndButtons(true);
         } else {
             game.attempt++;
-            setupInitialGuessRow();
             guesses.scrollTop = 0;
+            setTimeout(function() {
+                setupInitialGuessRow();
+            }, animationDurationSlow);
         }
     } else {
         showDialog(DialogCases.PEG_NOT_FILLED);
@@ -321,6 +335,14 @@ function closeDialog() {
     }, animationDuration);
 }
 
+function disableRowScrolling(scrollingStatus) {
+    if (scrollingStatus) {
+        guesses.style.overflowY = "hidden";
+    } else {
+        guesses.style.overflowY = "scroll";
+    }
+}
+
 function disablePaletteAndButtons(isDisabled) {
     let clickEnabledValue;
     if (isDisabled) {
@@ -356,10 +378,10 @@ function resetGameScreen() {
 function reviewGame() {
     closeDialog();
     disablePaletteAndButtons(true);
+    disableRowScrolling(false);
 }
 
 function restartGame() {
-    disablePaletteAndButtons(false);
     resetGameScreen();
     closeDialog();
     navigate(gameScreen, loadingScreen, NavigationStyle.FADE);
@@ -372,7 +394,6 @@ function restartGame() {
 }
 
 function quitGame() {
-    disablePaletteAndButtons(false);
     resetGameScreen();
     closeDialog();
     navigate(gameScreen, loadingScreen, NavigationStyle.FADE);
