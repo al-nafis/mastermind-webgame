@@ -26,10 +26,10 @@ Things done
 - add images in how to play section
 - add animation in menu
 - add animation in game
+- add animation in palette and feedback
 
 
 
 Things to do
-- add animation in palette and feedback
-- optimize settimeout usage
 - edge browser support
+- small laptop screen support

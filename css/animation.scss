@@ -80,38 +80,33 @@ $animationTimingFunction: linear;
 
 
 
-@include keyframes(swipeUpOut) {
-    to { transform: translateY(-100%) }
-}
-@include keyframes(swipeUpIn) {
-    from { transform: translateY(100%) }
-}
-@include setUpAnimationClass(swipeUpOut);
-@include setUpAnimationClass(swipeUpIn);
-
-
-
-
-
-@include keyframes(swipeDownOut) {
-    to { transform: translateY(100%) }
-}
-@include keyframes(swipeDownIn) {
-    from { transform: translateY(-100%) }
-}
-@include setUpAnimationClass(swipeDownOut);
-@include setUpAnimationClass(swipeDownIn);
-
-
-
-
-
-@include keyframes(paletteSlideOut) {
-    to { transform: translateY(-100%) }
-}
-
 @include keyframes(paletteSlideIn) {
-    from { transform: translateY(-100%) }
+    to { transform: translateX(0%) }
 }
-@include setUpAnimationClass(paletteSlideOut, $animationDurationSlow);
+@include keyframes(paletteSlideOut) {
+    to { transform: translateX(100%) }
+}
 @include setUpAnimationClass(paletteSlideIn, $animationDurationSlow);
+@include setUpAnimationClass(paletteSlideOut, $animationDurationSlow);
+
+
+
+
+
+@include keyframes(rowIn) {
+    to { transform: translateX(0%) }
+}
+@include setUpAnimationClass(rowIn, $animationDurationSlow);
+
+
+
+
+
+@include keyframes(feedbackSlideOut) {
+    from { border-left: 1px solid white; }
+    to { 
+        transform: translateX(100%);
+        border-left: 1px solid white;
+    }
+}
+@include setUpAnimationClass(feedbackSlideOut, $animationDurationSlow);

@@ -1,4 +1,4 @@
-let welcomeMenu, mainMenu, newGameMenu, optionsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, loadingScreen, dialogBox, game, codeMakerPalette, codeMakerPaletteOverlay, howToPlay, difficultyLevelDisplay,soundImg, guesses, dialogHeader, dialogTitle, dialogCloseBtn, dialogBody, dialogButtons, dialogRestartBtn, dialogQuitBtn, dialogReviewBtn, textColor;
+let welcomeMenu, mainMenu, newGameMenu, optionsMenu, soundOnBtn, soundOffBtn, menuScreen, gameScreen, loadingScreen, dialogBox, game, codeMakerPalette, codeMakerPaletteOverlay, howToPlay, difficultyLevelDisplay,soundImg, guesses, dialogHeader, dialogTitle, dialogCloseBtn, dialogBody, dialogButtons, dialogRestartBtn, dialogQuitBtn, dialogReviewBtn, textColor, currentRowFeedbackOverlay;
 
 let codeMakerCodePegs = [];
 let guessCodeRows = [];
@@ -39,6 +39,8 @@ const AnimationStyle = {
     FADE_OUT: "fadeOut",
     PALETTE_SLIDE_IN: "paletteSlideIn",
     PALETTE_SLIDE_OUT: "paletteSlideOut",
+    ROW_IN: "rowIn",
+    FEEDBACK_SLIDE_OUT:"feedbackSlideOut"
 }
 
 
@@ -55,8 +57,20 @@ function displayNone(view) {
     view.style.display = "none";
 }
 
+function displayNoneAll(viewArray) {
+    for (let i=0; i<viewArray.length; i++) {
+        viewArray[i].style.display = "none";
+    }
+}
+
 function displayBlock(view) {
     view.style.display = "block";
+}
+
+function displayBlockAll(viewArray) {
+    for (let i=0; i<viewArray.length; i++) {
+        viewArray[i].style.display = "block";
+    }
 }
 
 function displayFlex(view) {
@@ -83,6 +97,16 @@ function removeClass(view, className) {
     view.classList.remove(className);
 }
 
+function getRandomColor() {
+    return Colors[Math.floor(Math.random() * Colors.length)];
+}
+
+function animateCodemakerPalette() {
+    for (let i=0; i<game.codeMaker.length; i++) {
+        updateBackgroundColor(codeMakerCodePegs[i], getRandomColor());
+    }
+}
+
 function animate(view, animationStyle) {
     let animationClassName;
     let animDuration = animationDuration;
@@ -97,23 +121,44 @@ function animate(view, animationStyle) {
             break;
         case AnimationStyle.FADE_OUT:
             animationClassName = "fadeOut";
+            setTimeout(function() {
+                displayNone(view);
+            }, animDuration);
             break;
         case AnimationStyle.PALETTE_SLIDE_IN:
             animDuration = animationDurationSlow;
             animationClassName = "paletteSlideIn";
+            setTimeout(function() {
+                view.style.transform = "translateX(0%)";
+            }, animDuration);
             break;
         case AnimationStyle.PALETTE_SLIDE_OUT:
             animDuration = animationDurationSlow;
             animationClassName = "paletteSlideOut";
+            setTimeout(function() {
+                view.style.transform = "translateX(100%)";
+            }, animDuration);
+            break;
+            
+        case AnimationStyle.ROW_IN:
+            animDuration = animationDurationSlow;
+            animationClassName = "rowIn";
+            setTimeout(function() {
+                view.style.transform = "translateX(0%)";
+            }, animDuration);
+            break;
+        case AnimationStyle.FEEDBACK_SLIDE_OUT:
+            animDuration = animationDurationSlow;
+            animationClassName = "feedbackSlideOut";
+            setTimeout(function() {
+                view.remove();
+            }, animDuration);
             break;
     }
     
     addClass(view, animationClassName);
     setTimeout(function() {
         removeClass(view, animationClassName);
-        if (animationStyle == AnimationStyle.FADE_OUT) {
-            displayNone(view);
-        }
     }, animDuration);
 }
 
@@ -127,14 +172,6 @@ function navigate(navigateFrom, navigateTo, navigationStyle) {
         case NavigationStyle.SWIPE_RIGHT:
             navigateFromClassName = "swipeRightOut";
             navigateToClassName = "swipeRightIn";
-            break;
-        case NavigationStyle.SWIPE_UP:
-            navigateFromClassName = "swipeUpOut";
-            navigateToClassName = "swipeUpIn";
-            break;
-        case NavigationStyle.SWIPE_DOWN:
-            navigateFromClassName = "swipeDownOut";
-            navigateToClassName = "swipeDownIn";
             break;
         case NavigationStyle.FADE:
             navigateFromClassName = "fadeOut";
@@ -173,19 +210,15 @@ function showDialog(dialogCase) {
         case DialogCases.RESTART_GAME:
             updateContentText(dialogTitle, "Restart");
             updateContentText(dialogRestartBtn, "Yes");
-            displayBlock(dialogHeader);
-            displayNone(dialogQuitBtn);
-            displayNone(dialogReviewBtn);
-            displayBlock(dialogRestartBtn);
+            displayBlockAll([dialogHeader, dialogRestartBtn]);
+            displayNoneAll([dialogQuitBtn, dialogReviewBtn]);
             displayFlex(dialogButtons);
             break;
         case DialogCases.QUIT_GAME:
             updateContentText(dialogTitle, "Quit");
             updateContentText(dialogQuitBtn, "Yes");
-            displayBlock(dialogHeader);
-            displayBlock(dialogQuitBtn);
-            displayNone(dialogReviewBtn);
-            displayNone(dialogRestartBtn);
+            displayBlockAll([dialogHeader, dialogQuitBtn]);
+            displayNoneAll([dialogRestartBtn, dialogReviewBtn]);
             displayFlex(dialogButtons);
             break;
         case DialogCases.GAME_OVER_WIN:
@@ -194,10 +227,7 @@ function showDialog(dialogCase) {
             updateContentText(dialogQuitBtn, "Menu");
             updateContentText(dialogRestartBtn, "Restart");
             displayNone(dialogCloseBtn);
-            displayBlock(dialogHeader);
-            displayBlock(dialogRestartBtn);
-            displayBlock(dialogReviewBtn);
-            displayBlock(dialogQuitBtn);
+            displayBlockAll([dialogHeader, dialogRestartBtn, dialogReviewBtn, dialogQuitBtn]);
             displayFlex(dialogButtons);
             break;
         case DialogCases.PEGS_FILLED:

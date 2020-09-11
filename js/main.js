@@ -28,12 +28,8 @@ window.onload = function() {
     dialogRestartBtn = viewById("dialog-restart-btn");
     dialogQuitBtn = viewById("dialog-quit-btn");
     dialogReviewBtn = viewById("dialog-review-btn");
-    
-    displayNone(mainMenu);
-    displayNone(newGameMenu);
-    displayNone(optionsMenu);
-    displayNone(gameScreen);
-    displayNone(dialogBox);
+
+    displayNoneAll([mainMenu, newGameMenu, optionsMenu, gameScreen, dialogBox]);
     
     textColor = document.getElementsByTagName('body')[0].style.color
     
@@ -94,7 +90,7 @@ function startGame(difficultyLevel) {
     game = new Game(difficultyLevel);
     navigate(menuScreen, loadingScreen, NavigationStyle.FADE);
     setTimeout(function() {
-        navigate(loadingScreen, gameScreen, NavigationStyle.SWIPE_UP);
+        navigate(loadingScreen, gameScreen, NavigationStyle.FADE);
         back();
         setupGameScreen();
     }, loadingDuration);
@@ -107,32 +103,45 @@ function setupGameScreen() {
     } else {
         soundImg.src = "images/mute.png";
     }
-    
+    disablePaletteAndButtons(true);
     updateContentText(difficultyLevelDisplay, game.difficultyLevel);
     displayBlock(codeMakerPaletteOverlay);
+    
+    //setup the codemaker's pattern
     setTimeout(function() {
-        animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_IN);
-        setTimeout(function() {
-            for (let i=0; i<game.codeMaker.length; i++) {
+        for (let i=0; i<game.codeMaker.length; i++) {
             const color = createDiv();
             addClass(color, "code-maker-color-peg");
-            updateBackgroundColor(color, game.codeMaker[i]);
+            updateBackgroundColor(color, getRandomColor());
             codeMakerPalette.appendChild(color);
             codeMakerCodePegs.push(color);
         }
+        const intervalSetter = setInterval(animateCodemakerPalette, animationDurationSlow / 5);   
+        animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_IN);
+        setTimeout(function() {
+            clearInterval(intervalSetter);
+            for (let i=0; i<game.codeMaker.length; i++) {
+                updateBackgroundColor(codeMakerCodePegs[i], game.codeMaker[i]);
+            }
+            setupInitialGuessRow();
         }, animationDurationSlow);
     }, animationDuration);
-    
-    setupInitialGuessRow();
 }
 
 function setupInitialGuessRow() {
+    disablePaletteAndButtons(true);
     currentRowCodePegs = [];
     currentRowKeyPegsHolder = [];
     game.currentCodeBreakerPattern = [];
     
+    setTimeout(function() {
+        disableRowScrolling(false);
+        disablePaletteAndButtons(false);
+    }, animationDurationSlow);
+    
     //adding a row
     const row = createDiv();
+    animate(row, AnimationStyle.ROW_IN);
     addClass(row, "row");
     guesses.prepend(row);
     guessCodeRows.push(row);
@@ -171,7 +180,12 @@ function setupInitialGuessRow() {
     addClass(feedbackHolder, "feedback-holder");
     row.appendChild(feedbackHolder);
     
+    currentRowFeedbackOverlay = createDiv();
+    addClass(currentRowFeedbackOverlay, "feedback-overlay");
+    feedbackHolder.appendChild(currentRowFeedbackOverlay);
+    
     const feedbackHolderInnerDiv = createDiv();
+    addClass(feedbackHolderInnerDiv, "feedback-holder-inner-div");
     feedbackHolder.appendChild(feedbackHolderInnerDiv);
     
     let eachRowKeyPegs = 2;
@@ -229,26 +243,35 @@ function breakCode() {
             const keyPeg = createDiv();
             updateBackgroundColor(keyPeg, feedback[i]);
             currentRowKeyPegsHolder[i].appendChild(keyPeg);
+            currentRowKeyPegsHolder[i].style.opacity = 1;
         }
+        disableRowScrolling(true);
+        disablePaletteAndButtons(true);
+        animate(currentRowFeedbackOverlay, AnimationStyle.FEEDBACK_SLIDE_OUT);
 
         //checking if the game is over
         if (game.isGameOver() && game.userWon) {
-            animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_OUT);
             setTimeout(function() {
-                displayNone(codeMakerPaletteOverlay);
-                showDialog(DialogCases.GAME_OVER_WIN);
+                animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_OUT);
+                setTimeout(function() {
+                    displayNone(codeMakerPaletteOverlay);
+                    showDialog(DialogCases.GAME_OVER_WIN);
+                }, animationDurationSlow);
             }, animationDurationSlow);
-            disablePaletteAndButtons(true);
         } else if (game.isGameOver() && !game.userWon) {
-            setTimeout(function() {
-                displayNone(codeMakerPaletteOverlay);
-                showDialog(DialogCases.GAME_OVER_LOSE);
+            setTimeout(function() {    
+                animate(codeMakerPaletteOverlay, AnimationStyle.PALETTE_SLIDE_OUT);
+                setTimeout(function() {
+                    displayNone(codeMakerPaletteOverlay);
+                    showDialog(DialogCases.GAME_OVER_LOSE);
+                }, animationDurationSlow);
             }, animationDurationSlow);
-            disablePaletteAndButtons(true);
         } else {
             game.attempt++;
-            setupInitialGuessRow();
             guesses.scrollTop = 0;
+            setTimeout(function() {
+                setupInitialGuessRow();
+            }, animationDurationSlow);
         }
     } else {
         showDialog(DialogCases.PEG_NOT_FILLED);
@@ -308,12 +331,16 @@ function closeDialog() {
         updateContentText(dialogQuitBtn, "");
         updateContentText(dialogRestartBtn, "");
         displayBlock(dialogCloseBtn);
-        displayNone(dialogHeader);
-        displayNone(dialogRestartBtn);
-        displayNone(dialogReviewBtn);
-        displayNone(dialogQuitBtn);
-        displayNone(dialogButtons);
+        displayNoneAll([dialogHeader, dialogRestartBtn, dialogReviewBtn, dialogQuitBtn, dialogButtons]);
     }, animationDuration);
+}
+
+function disableRowScrolling(scrollingStatus) {
+    if (scrollingStatus) {
+        guesses.style.overflowY = "hidden";
+    } else {
+        guesses.style.overflowY = "scroll";
+    }
 }
 
 function disablePaletteAndButtons(isDisabled) {
@@ -335,24 +362,26 @@ function disablePaletteAndButtons(isDisabled) {
 
 function resetGameScreen() {
     updateContentText(difficultyLevelDisplay, "");
+    codeMakerPaletteOverlay.style.transform = "translateX(-100%)";
     
     for (let i=0; i<codeMakerCodePegs.length; i++) {
         codeMakerCodePegs[i].remove();
     }
+    codeMakerCodePegs = [];
     
     for (let i=0; i<guessCodeRows.length; i++) {
         guessCodeRows[i].remove();
     };
-    
+    guessCodeRows = [];
 }
 
 function reviewGame() {
     closeDialog();
     disablePaletteAndButtons(true);
+    disableRowScrolling(false);
 }
 
 function restartGame() {
-    disablePaletteAndButtons(false);
     resetGameScreen();
     closeDialog();
     navigate(gameScreen, loadingScreen, NavigationStyle.FADE);
@@ -365,11 +394,10 @@ function restartGame() {
 }
 
 function quitGame() {
-    disablePaletteAndButtons(false);
     resetGameScreen();
     closeDialog();
     navigate(gameScreen, loadingScreen, NavigationStyle.FADE);
     setTimeout(function() {
-        navigate(loadingScreen, menuScreen, NavigationStyle.SWIPE_DOWN);
+        navigate(loadingScreen, menuScreen, NavigationStyle.FADE);
     }, loadingDuration);
 }
