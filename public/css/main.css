@@ -1,44 +1,77 @@
-@-webkit-keyframes swipeLeftOut { to { -webkit-transform: translateX(-100%); transform: translateX(-100%); } }
-@keyframes swipeLeftOut { to { -webkit-transform: translateX(-100%); transform: translateX(-100%); } }
-@-webkit-keyframes swipeLeftIn { from { -webkit-transform: translateX(100%); transform: translateX(100%); } }
-@keyframes swipeLeftIn { from { -webkit-transform: translateX(100%); transform: translateX(100%); } }
-.swipeLeftOut { -webkit-animation: swipeLeftOut 0.3s linear; animation: swipeLeftOut 0.3s linear; }
+@-webkit-keyframes swipeLeftOut { to { transform: translateX(-100%); } }
+@-moz-keyframes swipeLeftOut { to { transform: translateX(-100%); } }
+@-ms-keyframes swipeLeftOut { to { transform: translateX(-100%); } }
+@-o-keyframes swipeLeftOut { to { transform: translateX(-100%); } }
+@keyframes swipeLeftOut { to { transform: translateX(-100%); } }
+@-webkit-keyframes swipeLeftIn { from { transform: translateX(100%); } }
+@-moz-keyframes swipeLeftIn { from { transform: translateX(100%); } }
+@-ms-keyframes swipeLeftIn { from { transform: translateX(100%); } }
+@-o-keyframes swipeLeftIn { from { transform: translateX(100%); } }
+@keyframes swipeLeftIn { from { transform: translateX(100%); } }
+.swipeLeftOut { -webkit-animation: swipeLeftOut 0.3s linear; -moz-animation: swipeLeftOut 0.3s linear; -ms-animation: swipeLeftOut 0.3s linear; -o-animation: swipeLeftOut 0.3s linear; animation: swipeLeftOut 0.3s linear; }
 
-.swipeLeftIn { -webkit-animation: swipeLeftIn 0.3s linear; animation: swipeLeftIn 0.3s linear; }
+.swipeLeftIn { -webkit-animation: swipeLeftIn 0.3s linear; -moz-animation: swipeLeftIn 0.3s linear; -ms-animation: swipeLeftIn 0.3s linear; -o-animation: swipeLeftIn 0.3s linear; animation: swipeLeftIn 0.3s linear; }
 
-@-webkit-keyframes swipeRightOut { to { -webkit-transform: translateX(100%); transform: translateX(100%); } }
-@keyframes swipeRightOut { to { -webkit-transform: translateX(100%); transform: translateX(100%); } }
-@-webkit-keyframes swipeRightIn { from { -webkit-transform: translateX(-100%); transform: translateX(-100%); } }
-@keyframes swipeRightIn { from { -webkit-transform: translateX(-100%); transform: translateX(-100%); } }
-.swipeRightOut { -webkit-animation: swipeRightOut 0.3s linear; animation: swipeRightOut 0.3s linear; }
+@-webkit-keyframes swipeRightOut { to { transform: translateX(100%); } }
+@-moz-keyframes swipeRightOut { to { transform: translateX(100%); } }
+@-ms-keyframes swipeRightOut { to { transform: translateX(100%); } }
+@-o-keyframes swipeRightOut { to { transform: translateX(100%); } }
+@keyframes swipeRightOut { to { transform: translateX(100%); } }
+@-webkit-keyframes swipeRightIn { from { transform: translateX(-100%); } }
+@-moz-keyframes swipeRightIn { from { transform: translateX(-100%); } }
+@-ms-keyframes swipeRightIn { from { transform: translateX(-100%); } }
+@-o-keyframes swipeRightIn { from { transform: translateX(-100%); } }
+@keyframes swipeRightIn { from { transform: translateX(-100%); } }
+.swipeRightOut { -webkit-animation: swipeRightOut 0.3s linear; -moz-animation: swipeRightOut 0.3s linear; -ms-animation: swipeRightOut 0.3s linear; -o-animation: swipeRightOut 0.3s linear; animation: swipeRightOut 0.3s linear; }
 
-.swipeRightIn { -webkit-animation: swipeRightIn 0.3s linear; animation: swipeRightIn 0.3s linear; }
+.swipeRightIn { -webkit-animation: swipeRightIn 0.3s linear; -moz-animation: swipeRightIn 0.3s linear; -ms-animation: swipeRightIn 0.3s linear; -o-animation: swipeRightIn 0.3s linear; animation: swipeRightIn 0.3s linear; }
 
 @-webkit-keyframes fadeOut { to { opacity: 0; } }
+@-moz-keyframes fadeOut { to { opacity: 0; } }
+@-ms-keyframes fadeOut { to { opacity: 0; } }
+@-o-keyframes fadeOut { to { opacity: 0; } }
 @keyframes fadeOut { to { opacity: 0; } }
 @-webkit-keyframes fadeIn { from { opacity: 0; } }
+@-moz-keyframes fadeIn { from { opacity: 0; } }
+@-ms-keyframes fadeIn { from { opacity: 0; } }
+@-o-keyframes fadeIn { from { opacity: 0; } }
 @keyframes fadeIn { from { opacity: 0; } }
-.fadeOut { -webkit-animation: fadeOut 0.3s linear; animation: fadeOut 0.3s linear; }
+.fadeOut { -webkit-animation: fadeOut 0.3s linear; -moz-animation: fadeOut 0.3s linear; -ms-animation: fadeOut 0.3s linear; -o-animation: fadeOut 0.3s linear; animation: fadeOut 0.3s linear; }
 
-.fadeIn { -webkit-animation: fadeIn 0.3s linear; animation: fadeIn 0.3s linear; }
+.fadeIn { -webkit-animation: fadeIn 0.3s linear; -moz-animation: fadeIn 0.3s linear; -ms-animation: fadeIn 0.3s linear; -o-animation: fadeIn 0.3s linear; animation: fadeIn 0.3s linear; }
 
-@-webkit-keyframes paletteSlideIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
-@keyframes paletteSlideIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
-@-webkit-keyframes paletteSlideOut { to { -webkit-transform: translateX(100%); transform: translateX(100%); } }
-@keyframes paletteSlideOut { to { -webkit-transform: translateX(100%); transform: translateX(100%); } }
-.paletteSlideIn { -webkit-animation: paletteSlideIn 1s linear; animation: paletteSlideIn 1s linear; }
+@-webkit-keyframes paletteSlideIn { to { transform: translateX(0%); } }
+@-moz-keyframes paletteSlideIn { to { transform: translateX(0%); } }
+@-ms-keyframes paletteSlideIn { to { transform: translateX(0%); } }
+@-o-keyframes paletteSlideIn { to { transform: translateX(0%); } }
+@keyframes paletteSlideIn { to { transform: translateX(0%); } }
+@-webkit-keyframes paletteSlideOut { to { transform: translateX(100%); } }
+@-moz-keyframes paletteSlideOut { to { transform: translateX(100%); } }
+@-ms-keyframes paletteSlideOut { to { transform: translateX(100%); } }
+@-o-keyframes paletteSlideOut { to { transform: translateX(100%); } }
+@keyframes paletteSlideOut { to { transform: translateX(100%); } }
+.paletteSlideIn { -webkit-animation: paletteSlideIn 1s linear; -moz-animation: paletteSlideIn 1s linear; -ms-animation: paletteSlideIn 1s linear; -o-animation: paletteSlideIn 1s linear; animation: paletteSlideIn 1s linear; }
 
-.paletteSlideOut { -webkit-animation: paletteSlideOut 1s linear; animation: paletteSlideOut 1s linear; }
+.paletteSlideOut { -webkit-animation: paletteSlideOut 1s linear; -moz-animation: paletteSlideOut 1s linear; -ms-animation: paletteSlideOut 1s linear; -o-animation: paletteSlideOut 1s linear; animation: paletteSlideOut 1s linear; }
 
-@-webkit-keyframes rowIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
-@keyframes rowIn { to { -webkit-transform: translateX(0%); transform: translateX(0%); } }
-.rowIn { -webkit-animation: rowIn 1s linear; animation: rowIn 1s linear; }
+@-webkit-keyframes rowIn { to { transform: translateX(0%); } }
+@-moz-keyframes rowIn { to { transform: translateX(0%); } }
+@-ms-keyframes rowIn { to { transform: translateX(0%); } }
+@-o-keyframes rowIn { to { transform: translateX(0%); } }
+@keyframes rowIn { to { transform: translateX(0%); } }
+.rowIn { -webkit-animation: rowIn 1s linear; -moz-animation: rowIn 1s linear; -ms-animation: rowIn 1s linear; -o-animation: rowIn 1s linear; animation: rowIn 1s linear; }
 
 @-webkit-keyframes feedbackSlideOut { from { border-left: 1px solid white; }
-  to { -webkit-transform: translateX(100%); transform: translateX(100%); border-left: 1px solid white; } }
+  to { transform: translateX(100%); border-left: 1px solid white; } }
+@-moz-keyframes feedbackSlideOut { from { border-left: 1px solid white; }
+  to { transform: translateX(100%); border-left: 1px solid white; } }
+@-ms-keyframes feedbackSlideOut { from { border-left: 1px solid white; }
+  to { transform: translateX(100%); border-left: 1px solid white; } }
+@-o-keyframes feedbackSlideOut { from { border-left: 1px solid white; }
+  to { transform: translateX(100%); border-left: 1px solid white; } }
 @keyframes feedbackSlideOut { from { border-left: 1px solid white; }
-  to { -webkit-transform: translateX(100%); transform: translateX(100%); border-left: 1px solid white; } }
-.feedbackSlideOut { -webkit-animation: feedbackSlideOut 1s linear; animation: feedbackSlideOut 1s linear; }
+  to { transform: translateX(100%); border-left: 1px solid white; } }
+.feedbackSlideOut { -webkit-animation: feedbackSlideOut 1s linear; -moz-animation: feedbackSlideOut 1s linear; -ms-animation: feedbackSlideOut 1s linear; -o-animation: feedbackSlideOut 1s linear; animation: feedbackSlideOut 1s linear; }
 
 @font-face { font-family: Aclonica; src: url("../fonts/Aclonica.ttf"); }
 @font-face { font-family: Special Elite; src: url("../fonts/SpecialElite.ttf"); }
@@ -46,11 +79,11 @@
 
 .w-100 { width: 100%; }
 
-* { -webkit-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; overflow: hidden; -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+* { box-sizing: border-box; margin: 0; padding: 0; overflow: hidden; -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
 html, body { background-color: black; overflow: hidden; font-family: 'Special Elite', cursive; font-size: 1.3em; color: white; }
 
-main { background-image: url("../images/background.gif"); background-repeat: no-repeat; background-position: center center; background--webkit-size: cover; background--moz-size: cover; background--o-size: cover; background-size: cover; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; display: none; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 100vw; height: 100%; }
+main { background-image: url("../images/background.gif"); background-repeat: no-repeat; background-position: center center; background--webkit-size: cover; background--moz-size: cover; background--o-size: cover; background-size: cover; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; display: none; align-items: center; width: 100vw; height: 100%; }
 @media (min-width: 420px) { main { background--webkit-attachment: initial; background--moz-attachment: initial; background--o-attachment: initial; background-attachment: initial; } }
 @media (min-width: 420px) { main { border: 2px solid #525252; border-radius: 2%; width: 420px; } }
 @media (min-height: 750px) { main { border: 2px solid #525252; border-radius: 2%; height: 750px; } }
@@ -77,8 +110,8 @@ main { background-image: url("../images/background.gif"); background-repeat: no-
 #toolbar #restart-btn { float: right; margin-right: 25px; }
 #toolbar #game-sound-btn { float: right; margin-right: 25px; }
 
-#code-maker-palette { position: relative; margin: 5px 0; background: #cccccc20; height: 16vw; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
-#code-maker-palette #code-maker-palette-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; -webkit-transform: translateX(-100%); transform: translateX(-100%); z-index: 100; border-top: 1px solid #525252; border-bottom: 1px solid #525252; background-image: url("../images/heartbeat.gif"); background-repeat: no-repeat; background-position: initial initial; background--webkit-size: 100% 100%; background--moz-size: 100% 100%; background--o-size: 100% 100%; background-size: 100% 100%; }
+#code-maker-palette { position: relative; margin: 5px 0; background: #cccccc20; height: 16vw; display: flex; justify-content: center; }
+#code-maker-palette #code-maker-palette-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: translateX(-100%); z-index: 100; border-top: 1px solid #525252; border-bottom: 1px solid #525252; background-image: url("../images/heartbeat.gif"); background-repeat: no-repeat; background-position: initial initial; background--webkit-size: 100% 100%; background--moz-size: 100% 100%; background--o-size: 100% 100%; background-size: 100% 100%; }
 @media (min-width: 420px) { #code-maker-palette #code-maker-palette-overlay { background--webkit-attachment: initial; background--moz-attachment: initial; background--o-attachment: initial; background-attachment: initial; } }
 #code-maker-palette .code-maker-color-peg { height: 13vw; width: 13vw; margin: 1.5vw 5px; border-radius: 50%; }
 @media (min-width: 420px) and (min-height: 750px) { #code-maker-palette { height: 60px; }
@@ -89,31 +122,31 @@ main { background-image: url("../images/background.gif"); background-repeat: no-
 .bottom-fixed { width: 100%; position: absolute; bottom: 0; }
 .bottom-fixed #guesses { border-bottom: 1px solid #525252; -ms-overflow-style: none; scrollbar-width: none; overflow-y: hidden; }
 .bottom-fixed #guesses::-webkit-scrollbar { display: none; }
-.bottom-fixed #guesses .row { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-transform: translateX(100%); transform: translateX(100%); height: 15vw; margin: 20px 3px; }
+.bottom-fixed #guesses .row { display: flex; justify-content: center; transform: translateX(100%); height: 15vw; margin: 20px 3px; }
 @media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row { height: 60px; } }
 @media (min-width: 420px) { .bottom-fixed #guesses .row { height: 60px; } }
-.bottom-fixed #guesses .row .attempt-number { height: 100%; width: 8%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.bottom-fixed #guesses .row .attempt-number { height: 100%; width: 8%; display: flex; align-items: center; justify-content: center; }
 .bottom-fixed #guesses .row .attempt-number div { font-family: 'Aclonica', cursive; font-size: .8rem; }
-.bottom-fixed #guesses .row .guess-palette { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; height: 100%; width: 72%; border-right: 1px solid white; border-left: 1px solid white; }
-.bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs { background: #525252; border-radius: 50%; margin: 0 5px; height: 12vw; width: 12vw; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
-.bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs div { -webkit-transition-duration: 1s; transition-duration: 1s; border-radius: 50%; height: 90%; width: 90%; }
+.bottom-fixed #guesses .row .guess-palette { display: flex; align-items: center; justify-content: center; height: 100%; width: 72%; border-right: 1px solid white; border-left: 1px solid white; }
+.bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs { background: #525252; border-radius: 50%; margin: 0 5px; height: 12vw; width: 12vw; display: flex; align-items: center; justify-content: center; }
+.bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs div { transition-duration: 1s; border-radius: 50%; height: 90%; width: 90%; }
 @media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs { height: 55px; width: 55px; } }
 @media (min-width: 420px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-4pegs { height: 55px; width: 55px; } }
-.bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs { background: #525252; border-radius: 50%; margin: 0 5px; height: 8vw; width: 8vw; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
-.bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs div { -webkit-transition-duration: 1s; transition-duration: 1s; border-radius: 50%; height: 95%; width: 95%; }
+.bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs { background: #525252; border-radius: 50%; margin: 0 5px; height: 8vw; width: 8vw; display: flex; align-items: center; justify-content: center; }
+.bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs div { transition-duration: 1s; border-radius: 50%; height: 95%; width: 95%; }
 @media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs { height: 35px; width: 35px; } }
 @media (min-width: 420px) { .bottom-fixed #guesses .row .guess-palette .code-peg-holder-6pegs { height: 35px; width: 35px; } }
-.bottom-fixed #guesses .row .feedback-holder { position: relative; height: 100%; width: 20%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.bottom-fixed #guesses .row .feedback-holder { position: relative; height: 100%; width: 20%; display: flex; align-items: center; justify-content: center; }
 .bottom-fixed #guesses .row .feedback-holder .feedback-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url("../images/feedback_overlay.gif"); background-repeat: no-repeat; background-position: center center; background--webkit-size: cover; background--moz-size: cover; background--o-size: cover; background-size: cover; z-index: 100; }
-@media (min-width: 420px) { .bottom-fixed #guesses .row .feedback-holder .feedback-overlay { background--webkit-attachment: fixed; background--moz-attachment: fixed; background--o-attachment: fixed; background-attachment: fixed; } }
-.bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
-.bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder { opacity: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 4.5vw; height: 4.5vw; margin: 1vw; border-radius: 50%; background: #525252; }
-.bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder div { -webkit-transition-duration: 1s; transition-duration: 1s; width: 80%; height: 80%; border-radius: 50%; }
+@media (min-width: 420px) { .bottom-fixed #guesses .row .feedback-holder .feedback-overlay { background--webkit-attachment: initial; background--moz-attachment: initial; background--o-attachment: initial; background-attachment: initial; } }
+.bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div { display: flex; justify-content: center; }
+.bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder { opacity: 0; display: flex; align-items: center; justify-content: center; width: 4.5vw; height: 4.5vw; margin: 1vw; border-radius: 50%; background: #525252; }
+.bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder div { transition-duration: 1s; width: 80%; height: 80%; border-radius: 50%; }
 @media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder { height: 20px; width: 20px; margin: 3px; } }
 @media (min-width: 420px) { .bottom-fixed #guesses .row .feedback-holder .feedback-holder-inner-div div .key-peg-holder { height: 20px; width: 20px; margin: 3px; } }
-.bottom-fixed #color-palette { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; padding: 10px 0; background-image: url("../images/palette.jpg"); background-repeat: no-repeat; background-position: initial initial; background--webkit-size: 100% 100%; background--moz-size: 100% 100%; background--o-size: 100% 100%; background-size: 100% 100%; }
+.bottom-fixed #color-palette { display: flex; justify-content: center; padding: 10px 0; background-image: url("../images/palette.jpg"); background-repeat: no-repeat; background-position: initial initial; background--webkit-size: 100% 100%; background--moz-size: 100% 100%; background--o-size: 100% 100%; background-size: 100% 100%; }
 @media (min-width: 420px) { .bottom-fixed #color-palette { background--webkit-attachment: initial; background--moz-attachment: initial; background--o-attachment: initial; background-attachment: initial; } }
-.bottom-fixed #color-palette .code-peg-holder { height: 13vw; width: 13vw; margin: 5px; background: #525252; border-radius: 50%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.bottom-fixed #color-palette .code-peg-holder { height: 13vw; width: 13vw; margin: 5px; background: #525252; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 .bottom-fixed #color-palette .code-peg-holder .code-peg { margin: auto; height: 90%; width: 90%; border-radius: 50%; }
 .bottom-fixed #color-palette .code-peg-holder .code-peg:hover { cursor: pointer; }
 .bottom-fixed #color-palette .code-peg-holder #color-red { background: red; }
@@ -124,19 +157,19 @@ main { background-image: url("../images/background.gif"); background-repeat: no-
 .bottom-fixed #color-palette .code-peg-holder #color-black { background: black; }
 @media (min-width: 420px) and (min-height: 750px) { .bottom-fixed #color-palette .code-peg-holder { height: 52px; width: 52x; } }
 @media (min-width: 420px) { .bottom-fixed #color-palette .code-peg-holder { height: 52px; width: 52px; } }
-.bottom-fixed #buttons-holder { display: -webkit-box; display: -ms-flexbox; display: flex; }
+.bottom-fixed #buttons-holder { display: flex; }
 .bottom-fixed #buttons-holder button { font-family: 'Special Elite', cursive; display: block; font-size: 1em; color: white; width: 50%; padding: 12px 0 5px 0; margin: 0 5px 5px 5px; border-color: white; border-radius: 3px; background: #00000000; outline: none; }
 .bottom-fixed #buttons-holder button:hover { cursor: pointer; }
 .bottom-fixed #buttons-holder button:active { background: #ffffff05; }
 
-#dialog-box { z-index: 500; position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+#dialog-box { z-index: 500; position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
 #dialog-box #dialog-container { width: 70%; background-color: black; border: 2px solid white; border-radius: 3px; padding: 10px; }
 #dialog-box #dialog-container #dialog-header { width: 100%; margin-bottom: 15px; display: none; position: relative; }
 #dialog-box #dialog-container #dialog-header h3 { text-align: center; width: 100%; }
 #dialog-box #dialog-container #dialog-header img { position: absolute; top: 2px; right: 2px; height: 20px; width: 20px; }
 #dialog-box #dialog-container #dialog-header img:hover { cursor: pointer; }
 #dialog-box #dialog-container #dialog-body { padding: 35px 10px 30px; text-align: center !important; font-size: .7em; }
-#dialog-box #dialog-container #dialog-buttons { display: none; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+#dialog-box #dialog-container #dialog-buttons { display: none; justify-content: center; }
 #dialog-box #dialog-container #dialog-buttons button { display: none; font-family: 'Special Elite', cursive; display: block; font-size: 4vw; color: white; width: 33%; padding: 12px 0 5px 0; margin: 5px; border-color: white; border-radius: 3px; background: #00000000; outline: none; }
 #dialog-box #dialog-container #dialog-buttons button:hover { cursor: pointer; }
 #dialog-box #dialog-container #dialog-buttons button:active { background: #ffffff05; }
@@ -144,7 +177,7 @@ main { background-image: url("../images/background.gif"); background-repeat: no-
 @media (min-width: 420px) { #dialog-box #dialog-container #dialog-buttons button { font-size: .65em; } }
 
 #how-to-play { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: black; z-index: 500; }
-#how-to-play #htp-header { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; height: 10%; position: relative; }
+#how-to-play #htp-header { display: flex; align-items: center; justify-content: center; height: 10%; position: relative; }
 #how-to-play #htp-header img { position: absolute; margin-top: -5px; right: 5vw; width: 25px; }
 #how-to-play #htp-header img:hover { cursor: pointer; }
 @media (min-width: 420px) and (min-height: 750px) { #how-to-play #htp-header img { right: 30px; } }
@@ -158,11 +191,11 @@ main { background-image: url("../images/background.gif"); background-repeat: no-
 #how-to-play #htp-body table tr td img { width: 40px; }
 
 #loading-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: black; display: none; }
-#loading-screen div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+#loading-screen div { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
 #loading-screen div img { width: 15%; }
 
 #not-supported-div { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: black; font-size: .7em; padding: 20px; z-index: 600; }
-@media (max-width: 319px) { #not-supported-div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; text-align: center; } }
-@media (max-height: 549px) { #not-supported-div { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; text-align: center; } }
+@media (max-width: 319px) { #not-supported-div { display: flex; align-items: center; justify-content: center; text-align: center; } }
+@media (max-height: 549px) { #not-supported-div { display: flex; align-items: center; justify-content: center; text-align: center; } }
 
 /*# sourceMappingURL=main.css.map */

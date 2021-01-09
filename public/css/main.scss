@@ -326,7 +326,7 @@ main {
                 @include centerize();
                 .feedback-overlay {
                     @include positionAbsoluteCoverAll;
-                    @include steady-background("../images/feedback_overlay.gif");
+                    @include steady-background("../images/feedback_overlay.gif", $attachment: initial);
                     z-index: 100;
                 }
                 .feedback-holder-inner-div {
