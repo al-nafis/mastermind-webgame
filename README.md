@@ -30,8 +30,3 @@ You will get a feedback on the right side of your guessed pattern. The feedback 
 Based on the feedback, you will compare previous attempts to each other and use logic to figure out what the right pattern would be.
 
 Good Luck!
-
-
-## Things to Improve
-- edge browser support
-- small laptop screen support
